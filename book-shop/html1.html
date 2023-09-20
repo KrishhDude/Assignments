@@ -1,0 +1,40 @@
+<html>
+    <head><title>Login/SignUp</title>
+        <link rel="stylesheet" href="style1.css">
+    </head>
+    <body>
+       
+        
+        <div class="maindiv">
+            <h1>My Book Shop</h1>
+            <div class="subdiv">
+                <form id="loginform" method="post" name="form1" onsubmit="return validate()">
+                
+                <input class="tin" placeholder="Username" type="text" id="username" name="username" required><br>
+                
+                <input class="tin" placeholder="Password" type="password" id="password" name="password" required><br>
+                <br>
+    
+                <input style="margin-top: 10px;" type="submit" value="Submit">
+                </form>
+                <br>
+            </div>
+        </div>
+        <script>
+            function validate(){
+                var uname = document.form1.username.value;
+                var pass = document.form1.password.value;
+                if ( uname == "Admin" && pass == "Admin@1234"){
+                    alert ("Login Success, redirecting..");
+                    window.location.href = "html2.html";
+                    return false;
+                }
+                else{
+                    alert("Invalid username or password, please try again!");
+                    document.form1.username.value = "";
+                    document.form1.password.value = "";
+                }
+            }
+        </script>
+    </body>
+</html>

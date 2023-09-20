@@ -1,0 +1,82 @@
+
+h1,h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    font-family: 'Courier New', Courier, monospace;
+    /*background: rgb(255,211,230);
+    background: linear-gradient(90deg, rgba(255,211,230,1) 0%, rgba(148,187,233,1) 100%);*/
+    background-image: url(bookbg.jpg);
+    background-size: cover;
+    color: aliceblue;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    margin: auto;
+}
+
+
+.maindiv{
+    color: aliceblue;
+    background-color: rgb(40, 40, 42);
+    box-shadow: 10px 10px 5px rgb(33, 33, 33);
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+}
+.subdiv{
+    margin: auto;
+    width: 90%;
+    padding: 20px;
+}
+.subdiv form{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    text-align: center;
+    color:rgb(251, 251, 251)
+}
+label{
+    font-weight: 900;
+}
+input[type="submit"]{
+    background-color: rgb(58, 132, 82);
+    color: rgb(255, 255, 255);
+    width: 80%;
+    border-radius: 7px;
+    padding: 10;
+    font-size: large;
+    font-weight: bolder;
+}
+button{
+    background-color: rgb(58, 132, 82);
+    color: rgb(255, 255, 255);
+    width: 80%;
+    border-radius: 7px;
+    padding: 10;
+    font-size: large;
+    font-weight: bolder;
+}
+.tin{
+    width: 80%;
+    padding: 10px;
+    border: none;
+    border-bottom: 3px solid rgb(255, 255, 255);
+    margin: 5px;
+    background-color: rgb(40, 40, 42);
+    color: aliceblue;
+    
+}
+.tin:focus{
+    background-color: rgb(230, 224, 245);
+    border-bottom: 5px solid rgba(0,0,0,1);
+    color: black;
+}
+
