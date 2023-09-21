@@ -1,0 +1,84 @@
+
+.topnav{
+    position: absolute;
+    background-color: rgba(57, 57, 57,0.5);
+    box-shadow: 0 0 0 2px  rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+}
+.topnav img{
+    position: relative;
+    margin-top: 15px;
+    margin-left: 15px;
+    float: left;
+}
+.topnav a{
+    float:left;
+    color: wheat;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
+    margin-left: 5px;
+
+}
+.topnav a:hover{
+    background-color: rgba(190, 5, 5, 0.5);
+    color: white;
+    box-shadow: 0 25.6px 57.6px 0 rgba(249, 5, 5, 0.5), 0 4.8px 14.4px 0 rgba(255, 0, 0, 0.5);
+    transform: scale(1.1);
+    transition: 0.2s;
+    border-radius: 10px;
+}
+.topnav i{
+    float: right;
+}
+.bannercontainer{
+    position: relative;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size:larger;
+}
+.banner-overlay{
+    position: absolute;
+    top:30%;
+    border-radius: 5px;
+    color: white;
+    padding: 20px 20px 20px 5%;
+
+}
+.banner-overlay h1{
+    padding-left: 40px;
+}
+.carousel img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    z-index: 0;
+}
+.pagecontent{
+    padding-top: 20px;
+    width: 60%;
+    align-items: center;
+    margin: auto;
+}
+legend{
+    text-decoration: underline 3px rgb(124, 0, 0);
+}
+.form-input{
+    border: none;
+    border-bottom: 3px solid rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 20px 0 20px;
+}
+.submitbtn{
+    padding: 12px 25px 12px 25px;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: rgb(124, 0, 0);
+    border: none;
+    border-bottom: 3px solid black;
+    color: white;
+}
