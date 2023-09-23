@@ -126,6 +126,7 @@ select{
     background-color: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 10px;
+    cursor: pointerS;
 }
 
 .form-input{
@@ -135,6 +136,7 @@ select{
     border-radius: 5px;
     padding: 10px;
     width: 90%;
+    cursor: pointerSS;
 
 }
 .submitbtn{
