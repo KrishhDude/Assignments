@@ -50,3 +50,16 @@ function toggleMenu() {
         x.className = "topnav";
     }
 }
+
+function validate() {
+
+    const departureCountry = document.getElementById('departure-country').value;
+    const destinationCountry = document.getElementById('destination-country').value;
+    const departureDate = document.getElementById('departure-date').value;
+    const arrivalDate = document.getElementById('arrival-date').value;
+    const classType = document.getElementById('class-type').value;
+    const passengerCount = document.getElementById('passenger-count').value;
+
+    alert("Hey");
+
+}
