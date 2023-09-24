@@ -159,10 +159,9 @@ select{
 .card-container{
     display: flex;
     text-align: center;
+    gap: 20px;
 }
-.card{
-    margin: 20px;
-}
+
 
 .faq-section {
     background: #fdfdfd;
@@ -296,3 +295,4 @@ footer{
 .form-control{
     margin: 10px;
 }
+
