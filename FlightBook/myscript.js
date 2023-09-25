@@ -42,14 +42,14 @@ document.getElementById('booking-form').addEventListener('submit', function (eve
 });
 
 
-function toggleMenu() {
-    var x = document.getElementById("myTopnav");
+const toggleMenu = () => {
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
     } else {
         x.className = "topnav";
     }
-}
+};
 
 function validate() {
     var departure = document.getElementById('departure-country').value;
@@ -66,14 +66,9 @@ function validate() {
           "\nClass Type: " + pclass +
           "\nNumber of Passengers: " + pcount;
 
-    // Display the confirmation message
     if (confirm(confirmationMessage)) {
-        // If the user clicks OK, redirect to "landing.html"
         window.location.href = "landing.html";
     } else {
-        // If the user clicks Cancel, do nothing
     }
-
-    // Prevent the form from submitting
     return false;
 }

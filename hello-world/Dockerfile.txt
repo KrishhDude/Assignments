@@ -1,0 +1,11 @@
+# Use an official OpenJDK runtime as a base image
+FROM openjdk:11-jre-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the .jar file into the container at /app
+COPY "C:\Users\User\Desktop\KP - hands_on\Assignments\hello-world\out\artifacts\hello_world_jar\hello-world.jar" .
+
+# Command to run the .jar file
+CMD ["java", "-jar", "hello-world.jar"]
