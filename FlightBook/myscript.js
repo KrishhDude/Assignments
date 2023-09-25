@@ -52,14 +52,28 @@ function toggleMenu() {
 }
 
 function validate() {
+    var departure = document.getElementById('departure-country').value;
+    var arrival = document.getElementById('destination-country').value;
+    var depdate = document.getElementById('departure-date').value;
+    var arrdate = document.getElementById('arrival-date').value;
+    var pclass = document.getElementById('class-type').value;
+    var pcount = document.getElementById('passenger-count').value;
 
-    const departureCountry = document.getElementById('departure-country').value;
-    const destinationCountry = document.getElementById('destination-country').value;
-    const departureDate = document.getElementById('departure-date').value;
-    const arrivalDate = document.getElementById('arrival-date').value;
-    const classType = document.getElementById('class-type').value;
-    const passengerCount = document.getElementById('passenger-count').value;
+    var confirmationMessage = "Selected Departure Country: " + departure +
+          "\nSelected Destination Country: " + arrival +
+          "\nDeparture Date: " + depdate +
+          "\nArrival Date: " + arrdate +
+          "\nClass Type: " + pclass +
+          "\nNumber of Passengers: " + pcount;
 
-    alert("Hey");
+    // Display the confirmation message
+    if (confirm(confirmationMessage)) {
+        // If the user clicks OK, redirect to "landing.html"
+        window.location.href = "landing.html";
+    } else {
+        // If the user clicks Cancel, do nothing
+    }
 
+    // Prevent the form from submitting
+    return false;
 }
