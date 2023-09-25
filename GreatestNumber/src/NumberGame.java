@@ -15,10 +15,20 @@ public class NumberGame {
         do {
             System.out.println("Enter your guess");
             userGuess = sc.nextInt();
-            if (userGuess < computerGuess)
-                System.out.println("You guessed lower");
-            if (userGuess > computerGuess)
-                System.out.println("You guessed higher");
+            if (userGuess < computerGuess) {
+                if (Math.abs(userGuess - computerGuess) < 5) {
+                    System.out.println("Really close, but you guessed a bit lower");
+                } else {
+                    System.out.println("You guessed lower");
+                }
+            }
+            if (userGuess > computerGuess){
+                if (Math.abs(userGuess - computerGuess) < 5) {
+                    System.out.println("Really close, but you guessed a bit higher");
+                } else {
+                    System.out.println("You guessed higher");
+                }
+            }
             if (userGuess == computerGuess) {
                 System.out.println("CONGRATULATIONS!!, the number was indeed " + userGuess);
                 System.out.println("You took " + count + " tries to get to the guess");

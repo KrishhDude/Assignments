@@ -4,29 +4,31 @@ public class Student {
     private int studentClass;
     private int totalMarks;
 
-    Student(String studentId, String studentName, int studentClass, int totalMarks){
+    Student(String studentId, String studentName, int studentClass, int totalMarks) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.studentClass = studentClass;
         this.totalMarks = totalMarks;
     }
-    static char calculateGrade(int totalMarks){
-        if(totalMarks>=90 && totalMarks<=100)
+
+    static char calculateGrade(int totalMarks) {
+        if (totalMarks >= 90 && totalMarks <= 100)
             return 'A';
-        else if(totalMarks>=80)
+        else if (totalMarks >= 80)
             return 'B';
-        else if(totalMarks>=70)
+        else if (totalMarks >= 70)
             return 'C';
-        else if(totalMarks>=60)
+        else if (totalMarks >= 60)
             return 'D';
         else
             return 'F';
     }
-    void displayStudentInfo(){
+
+    void displayStudentInfo() {
         System.out.println("Student Id: " + this.studentId);
         System.out.println(" Name: " + this.studentName);
         System.out.println(" Class: " + this.studentClass);
         System.out.println(" Marks: " + this.totalMarks);
-        System.out.println(" Grade: "+ calculateGrade(totalMarks));
+        System.out.println(" Grade: " + calculateGrade(totalMarks));
     }
 }
