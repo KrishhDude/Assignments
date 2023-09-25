@@ -11,6 +11,6 @@ public class NumberGuesser {
         TimeUnit.SECONDS.sleep(2);
         System.out.println("Guessing....");
         TimeUnit.SECONDS.sleep(2);
-        System.out.println(guess+"!!!!!!");
+        System.out.println(guess + "!!!!!!");
     }
 }

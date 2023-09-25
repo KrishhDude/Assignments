@@ -2,36 +2,37 @@ import java.util.Scanner;
 
 public class PasswordChecker {
 
-    public static  boolean isStrongPassword(String password){
-        boolean passLength=false,containUpper=false,containLower =false,containDigit =false;
+    public static boolean isStrongPassword(String password) {
+        boolean passLength = false, containUpper = false, containLower = false, containDigit = false;
         char[] charPassword = password.toCharArray();
-        if(charPassword.length>=8){
-            passLength=true;
+        if (charPassword.length >= 8) {
+            passLength = true;
         }
-        for (int i = 0; i <charPassword.length ; i++) {
-            if(Character.isLowerCase((charPassword[i])) && !containLower){
+        for (char c : charPassword) {
+            if (Character.isLowerCase(c) && !containLower) {
                 containLower = true;
             }
-            if(Character.isUpperCase((charPassword[i])) && !containUpper){
+            if (Character.isUpperCase(c) && !containUpper) {
                 containUpper = true;
             }
-            if(Character.isDigit(charPassword[i]) && !containDigit){
+            if (Character.isDigit(c) && !containDigit) {
                 containDigit = true;
             }
         }
-        return  passLength && containLower && containUpper && containDigit;
+        return passLength && containLower && containUpper && containDigit;
     }
+
     public static void main(String[] arg) {
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
 
-        while (flag){
+        while (flag) {
             System.out.println("Enter Password");
             String pass = sc.next();
-            if(isStrongPassword(pass)){
+            if (isStrongPassword(pass)) {
                 System.out.println("Password Valid");
-                flag=false;
-            }else {
+                flag = false;
+            } else {
                 System.out.println("Not a valid password");
             }
         }
