@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class PasswordChecker {
 
     public static boolean isStrongPassword(String password) {
-        boolean passLength = false, containUpper = false, containLower = false, containDigit = false;
+        boolean passLength = false, containUpper = false, containLower = false, containDigit = false, containSpclChar = false;
         char[] charPassword = password.toCharArray();
         if (charPassword.length >= 8) {
             passLength = true;
@@ -18,8 +18,12 @@ public class PasswordChecker {
             if (Character.isDigit(c) && !containDigit) {
                 containDigit = true;
             }
+            String specialCharacters = new String("!@#$%&*()'+,-./:;<=>?[]^_`{|}");
+            if(specialCharacters.contains(Character.toString(c)))
+                containSpclChar = true;
+
         }
-        return passLength && containLower && containUpper && containDigit;
+        return passLength && containLower && containUpper && containDigit && containSpclChar;
     }
 
     public static void main(String[] arg) {
