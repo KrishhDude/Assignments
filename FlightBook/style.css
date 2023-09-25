@@ -157,6 +157,7 @@ select{
 }
 
 .card-container{
+    margin-top: 40px;
     display: flex;
     text-align: center;
     gap: 20px;
