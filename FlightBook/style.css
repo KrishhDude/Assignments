@@ -21,7 +21,10 @@
         justify-content:left;
         padding: auto;
     }
-    
+    .card-container{
+        display: flex;
+        flex-direction: column;
+    }
 }
 @media screen and (min-width: 600px) {
     .topnav a.icon{
