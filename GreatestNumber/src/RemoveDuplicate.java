@@ -3,7 +3,10 @@ import java.util.Scanner;
 
 public class RemoveDuplicate {
     static void removeDuplicates(char[] str){
-        int i,j, size=str.length, index=0;
+        int i;
+        int j;
+        int size=str.length;
+        int index=0;
         for(i=0; i<size; i++) {
             for (j = 0; j < i; j++) {
                 if (str[i] == str[j])
@@ -12,7 +15,7 @@ public class RemoveDuplicate {
             if (i == j)
                 str[index++] = str[i];
         }
-        System.out.println(String.valueOf(Arrays.copyOf(str, size)));
+        System.out.println(String.valueOf(Arrays.copyOf(str, index)));
     }
     public static void  main(String[] args){
         Scanner userInput = new Scanner(System.in);
