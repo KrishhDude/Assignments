@@ -16,7 +16,7 @@ public class NumberGame {
             System.out.println("Enter your guess");
             userGuess = sc.nextInt();
             if (userGuess < computerGuess) {
-                if (Math.abs(userGuess - computerGuess) < 5) {
+                if (Math.abs(userGuess - computerGuess) < 5) {              //Checks if the user is within 5 numbers of system's guess
                     System.out.println("Really close, but you guessed a bit lower");
                 } else {
                     System.out.println("You guessed lower");

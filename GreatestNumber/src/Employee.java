@@ -1,3 +1,7 @@
+/*
+ *Main class belongs to EmployeeManager.java
+*/
+
 public class Employee {
     private String employeeId;
     private String employeeName;

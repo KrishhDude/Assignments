@@ -1,3 +1,5 @@
+//Just a fun code, dont mind
+
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
