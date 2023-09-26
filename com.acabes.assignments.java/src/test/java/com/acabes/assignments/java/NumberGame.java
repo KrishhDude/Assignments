@@ -1,3 +1,4 @@
+package com.acabes.assignments.java;
 
 import java.util.Random;
 import java.util.Scanner;

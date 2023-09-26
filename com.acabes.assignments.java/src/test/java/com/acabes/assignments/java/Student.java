@@ -1,6 +1,6 @@
-/*
+package com.acabes.assignments.java;/*
  *Main class belongs to GradeCalculator.java
-*/
+ */
 
 public class Student {
     private String studentId;

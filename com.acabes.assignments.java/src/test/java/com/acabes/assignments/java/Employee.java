@@ -1,6 +1,7 @@
+package com.acabes.assignments.java;
 /*
  *Main class belongs to EmployeeManager.java
- */
+*/
 
 public class Employee {
     private String employeeId;
