@@ -18,11 +18,22 @@ public class PasswordChecker {
             if (Character.isDigit(c) && !containDigit) {
                 containDigit = true;
             }
-            String specialCharacters = new String("!@#$%&*()'+,-./:;<=>?[]^_`{|}");
+            String specialCharacters = new String(" !@#$%&*()'+,-./:;<=>?[]^_`{|}");
             if(specialCharacters.contains(Character.toString(c)))
                 containSpclChar = true;
 
         }
+        if(!passLength)
+            System.out.println("Password must be of atleast 8 characters");
+        else if(!containUpper)
+            System.out.println("Password must contain atleast one uppercase character");
+        else if(!containLower)
+            System.out.println("Password must contain atleast one lowercase character");
+        else if(!containDigit)
+            System.out.println("Password must contain atleast one digit");
+        else if(!containSpclChar)
+            System.out.println("Password must contain atleast one special character");
+
         return passLength && containLower && containUpper && containDigit && containSpclChar;
     }
 
@@ -32,7 +43,7 @@ public class PasswordChecker {
 
         while (flag) {
             System.out.println("Enter Password");
-            String pass = sc.next();
+            String pass = sc.nextLine();
             if (isStrongPassword(pass)) {
                 System.out.println("Password Valid");
                 flag = false;
