@@ -24,24 +24,6 @@ function populateDropdown(elementId, countries) {
     });
 }
 
-document.getElementById('booking-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const departureCountry = document.getElementById('departure-country').value;
-    const destinationCountry = document.getElementById('destination-country').value;
-    const departureDate = document.getElementById('departure-date').value;
-    const arrivalDate = document.getElementById('arrival-date').value;
-    const classType = document.getElementById('class-type').value;
-
-    alert(`Booking details:
-        Departure Country: ${departureCountry}
-        Destination Country: ${destinationCountry}
-        Departure Date: ${departureDate}
-        Arrival Date: ${arrivalDate}
-        Class Type: ${classType}`);
-});
-
-
 const toggleMenu = () => {
     const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {

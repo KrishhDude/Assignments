@@ -33,7 +33,7 @@
         display: none;
     }
 }
-@media screen and (max-width: 769p) {
+@media screen and (max-width: 769px) {
     .card{
         min-width: 50%;
         flex-basis: 50%;
@@ -164,7 +164,7 @@ select{
     border-radius: 5px;
     padding: 10px;
     width: 80%;
-    cursor: pointerSS;
+    cursor: pointer;
 
 }
 .submitbtn{
