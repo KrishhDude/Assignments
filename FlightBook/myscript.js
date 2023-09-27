@@ -23,6 +23,7 @@ function populateDropdown(elementId, countries) {
         selectElement.appendChild(option);
     });
 }
+document.getElementById('arrival-date').min = new Date().toISOString().split('T')[0];
 
 const toggleMenu = () => {
     const x = document.getElementById("myTopnav");
@@ -55,6 +56,7 @@ const toggleMenu = () => {
 //     return false;
 // }
 
+
 function displayPopup() {
     const popup = document.getElementById("confirmation-popup");
     popup.style.display = "block";
@@ -82,4 +84,7 @@ function displayPopup() {
 function closePopup() {
     const popup = document.getElementById("confirmation-popup");
     popup.style.display = "none";
+}
+function doBooking() {
+    window.location.href = 'landing.html';
 }

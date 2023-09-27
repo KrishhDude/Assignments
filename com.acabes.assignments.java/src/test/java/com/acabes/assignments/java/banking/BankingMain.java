@@ -62,62 +62,72 @@ public class BankingMain {
         CheckingAccount checking = new CheckingAccount();
 
         System.out.println("Hello! and welcome to Model Bank");
-        System.out.println("Please select your account type:\n" +
-                            "1: Savings Account \n2: Checking Account\n");
-        int accountType = sc.nextInt();
-        if(accountType == 1){
-            boolean flag = true;
-            while(flag){
-                System.out.println("\n\n\nWhat would you like to do?\n" +
-                                    "1. View Current Balance\n2. Deposit\n3. Withdraw\n4. Add interest rate\n5. Exit\n");
-                int choice = sc.nextInt();
-                switch (choice){
-                    case 1:
-                        System.out.println(saving.viewbalance());
-                    case 2:
-                        System.out.println("Enter amount to deposit: ");
-                        double depositAmount = sc.nextDouble();
-                        saving.deposit(depositAmount);
-                        break;
-                    case 3:
-                        System.out.println("Enter amount to withdraw: ");
-                        double withdrawalAmount = sc.nextDouble();
-                        saving.withdraw(withdrawalAmount);
-                        break;
-                    case 4:
-                        System.out.println("Enter your interest rate");
-                        float interestRate = sc.nextFloat();
-                        saving.applyInterest(interestRate);
-                        break;
-                    case 5:
-                        flag = false;
-                        break;
+
+        boolean typeSelect = true;
+        while(typeSelect){
+
+            System.out.println("\n\nPlease select your account type:\n" +
+                                "1: Savings Account \n2: Checking Account\n3: Exit System");
+            int accountType = sc.nextInt();
+            if(accountType == 1){
+                boolean flag = true;
+                while(flag){
+                    System.out.println("\n\n\nWhat would you like to do?\n" +
+                                        "1. View Current Balance\n2. Deposit\n3. Withdraw\n4. Add interest rate\n5. Exit\n");
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println(saving.viewbalance());
+                            break;
+                        case 2:
+                            System.out.println("Enter amount to deposit: ");
+                            double depositAmount = sc.nextDouble();
+                            saving.deposit(depositAmount);
+                            break;
+                        case 3:
+                            System.out.println("Enter amount to withdraw: ");
+                            double withdrawalAmount = sc.nextDouble();
+                            saving.withdraw(withdrawalAmount);
+                            break;
+                        case 4:
+                            System.out.println("Enter your interest rate");
+                            float interestRate = sc.nextFloat();
+                            saving.applyInterest(interestRate);
+                            break;
+                        case 5:
+                            flag = false;
+                            break;
+                    }
                 }
             }
-        }
-        if(accountType == 2){
-            boolean flag = true;
-            while(flag){
-                System.out.println("\n\n\nWhat would you like to do?\n" +
-                        "1. View Current Balance\n2. Deposit\n3. Withdraw\n4. Exit\n");
-                int choice = sc.nextInt();
-                switch (choice){
-                    case 1:
-                        System.out.println(checking.viewbalance());
-                    case 2:
-                        System.out.println("Enter amount to deposit: ");
-                        double depositAmount = sc.nextDouble();
-                        checking.deposit(depositAmount);
-                        break;
-                    case 3:
-                        System.out.println("Enter amount to withdraw: ");
-                        double withdrawalAmount = sc.nextDouble();
-                        checking.withdraw(withdrawalAmount);
-                        break;
-                    case 4:
-                        flag = false;
-                        break;
+            if(accountType == 2){
+                boolean flag = true;
+                while(flag){
+                    System.out.println("\n\n\nWhat would you like to do?\n" +
+                            "1. View Current Balance\n2. Deposit\n3. Withdraw\n4. Exit\n");
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println(checking.viewbalance());
+                            break;
+                        case 2:
+                            System.out.println("Enter amount to deposit: ");
+                            double depositAmount = sc.nextDouble();
+                            checking.deposit(depositAmount);
+                            break;
+                        case 3:
+                            System.out.println("Enter amount to withdraw: ");
+                            double withdrawalAmount = sc.nextDouble();
+                            checking.withdraw(withdrawalAmount);
+                            break;
+                        case 4:
+                            flag = false;
+                            break;
+                    }
                 }
+            }
+            if(accountType==3){
+                typeSelect=false;
             }
         }
     }

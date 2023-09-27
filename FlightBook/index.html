@@ -74,7 +74,10 @@
                     </div>
                     <div class="form-group">
                         <label for="destination-country">Destination Country:</label>
-                        <select id="destination-country" name="destination-country"></select>
+                        <select id="destination-country" name="destination-country">
+                            <option value="" disabled selected>Select Departure</option>
+                        </select>
+                        
                     </div>
                 </div>
                 <div class="form-row">
@@ -91,6 +94,7 @@
                     <div class="form-group">
                         <label for="class-type">Class Type:</label>
                         <select id="class-type" name="class-type" class="form-input">
+                            <option value="" disabled selected>Select Class</option>
                             <option value="economy">Economy</option>
                             <option value="business">Business</option>
                             <option value="first-class">First Class</option>
@@ -99,6 +103,7 @@
                     <div class="form-group">
                         <label for="passenger-count">Number of Passengers:</label>
                         <select id="passenger-count" name="passenger-count">
+                            <option value="" disabled selected>Select Passenger Count</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -113,15 +118,37 @@
             <div>
                 <div id="confirmation-popup" class="popup">
                     <div class="popup-content">
-                        <span class="close" onclick="closePopup()">&times;</span>
-                        <h3>Confirmation</h3>
-                        
-                        <p>Departure Country: <span id="popup-departure-country"></span></p>
-                        <p>Destination Country: <span id="popup-destination-country"></span></p>
-                        <p>Departure Date: <span id="popup-departure-date"></span></p>
-                        <p>Arrival Date: <span id="popup-arrival-date"></span></p>
-                        <p>Class Type: <span id="popup-class-type"></span></p>
-                        <p>Number of Passengers: <span id="popup-passenger-count"></span></p>
+                        <span class="close" onclick="closePopup()"><button type="button" class="btn-close" aria-label="Close"></button></span>
+                        <h3>Your Query:</h3>
+                        <hr>
+                        <table>
+                            <tr>
+                                <td><p>Departure Country</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-departure-country"></span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Destination Country</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-destination-country"></span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Departure Date</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-departure-date"></span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Arrival Date</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-arrival-date"></span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Class Type</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-class-type"></span></td>
+                            </tr>
+                            <tr>
+                                <td><p>Number Of Passengers</p></td>
+                                <td>&#58;&nbsp;&nbsp;<span id="popup-passenger-count"></span></td>
+                            </tr>
+                        </table>
+                        <br>
+                        <span class="modal-submit-button"><button type="button" class="btn btn-success" onclick="doBooking(); return false;">Confirm</button></span>
                     </div>
                 </div>
               </div>
