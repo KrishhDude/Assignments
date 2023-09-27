@@ -14,14 +14,14 @@ public class FlightMain {
                                 "2. Book a flight\n" +
                                 "3. Cancel your booking\n");
             int choice = sc.nextInt();
-            switch (choice){
-                case 1:
-                    passenger.getFlight();
-                    break;
-                case 2:
+            switch (choice) {
+                case 1 -> passenger.getFlight();
+                case 2 -> {
                     System.out.println("For which flight would you like to book?");
                     int flightNumber = sc.nextInt();
                     passenger.bookFlight(flightNumber);
+                    break;
+                }
             }
         }
     }
