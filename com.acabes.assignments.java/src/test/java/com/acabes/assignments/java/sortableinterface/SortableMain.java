@@ -9,14 +9,16 @@ interface sortable{
 class QuickSort implements sortable{
     public void sortItems(int[] array){
         Arrays.sort(array);
-        System.out.println(array);
+        String arr = Arrays.toString(array);
+        System.out.println("After Quick Sort: " + arr);
     }
 }
 
 class MergeSort implements sortable{
     public void sortItems(int[] array) {
         Arrays.sort(array);
-        System.out.println(array);
+        String arr = Arrays.toString(array);
+        System.out.println("After Merge Sort: " + arr);
     }
 }
 public class SortableMain {
