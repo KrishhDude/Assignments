@@ -1,5 +1,6 @@
 package com.acabes.assignments.java.banking;
 
+import java.util.InvalidPropertiesFormatException;
 import java.util.Scanner;
 
 abstract class BankAccount{
@@ -12,7 +13,7 @@ abstract class BankAccount{
         System.out.println("\nAmount deposited: " + depositAmount);
         System.out.println("Curr avl balance: " + balance);
     };
-    abstract void withdraw(double withdrawalAmount);
+    abstract boolean withdraw(double withdrawalAmount) throws InsufficientFundException;
     double viewbalance(){
         return balance;
     }
@@ -25,22 +26,28 @@ class SavingAccount extends BankAccount{
         System.out.println("\nInterest Applied: " + interestAmount);
         System.out.println("Curr avl balance after interest: " + balance);
     }
-    void withdraw(double withdrawalAmount) {
-        if(withdrawalAmount>balance){
-            System.out.println("Insufficient balance to complete the transaction\n" +
-                                "Current available balance: " + balance);
+    boolean withdraw(double withdrawalAmount) throws InsufficientFundException {
+
+        try {
+            if (withdrawalAmount > balance) {
+                System.out.println("Insufficient balance to complete the transaction\n" +
+                        "Current available balance: " + balance);
+                throw new InsufficientFundException(100, "Insufficient Balance", "Ensure you have enough balance in your account");
+            }
+        } catch (InsufficientFundException e){
+            System.out.println(e.message);
+            return false;
         }
-        else{
-            balance -= withdrawalAmount;
-            System.out.println("Amount withdrawn: " + withdrawalAmount +
-                                "\nCurrent available balance: " + balance);
-        }
+        balance -= withdrawalAmount;
+        System.out.println("Amount withdrawn: " + withdrawalAmount +
+                            "\nCurrent available balance: " + balance);
+        return false;
     }
 }
 
 class CheckingAccount extends BankAccount{
     double overdraftFee = 0;
-    void withdraw(double withdrawalAmount) {
+    boolean withdraw(double withdrawalAmount) {
         if(withdrawalAmount>balance){
             overdraftFee = balance - withdrawalAmount;
             balance -= withdrawalAmount;
@@ -52,11 +59,12 @@ class CheckingAccount extends BankAccount{
             System.out.println("Amount withdrawn: " + withdrawalAmount +
                     "\nCurrent available balance: " + balance);
         }
+        return false;
     }
 }
 
 public class BankingMain {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InsufficientFundException {
         Scanner sc = new Scanner(System.in);
         SavingAccount saving = new SavingAccount();
         CheckingAccount checking = new CheckingAccount();
@@ -81,14 +89,29 @@ public class BankingMain {
                             break;
                         case 2:
                             System.out.println("Enter amount to deposit: ");
-                            double depositAmount = sc.nextDouble();
-                            saving.deposit(depositAmount);
+                            try{
+                                double depositAmount = sc.nextDouble();
+                                if(depositAmount<1)
+                                    throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                                saving.deposit(depositAmount);
+                                break;
+                            } catch (InvalidAmountException e){
+                                System.out.println(e.message);
+                            }
                             break;
+
                         case 3:
                             System.out.println("Enter amount to withdraw: ");
-                            double withdrawalAmount = sc.nextDouble();
-                            saving.withdraw(withdrawalAmount);
+                            try{
+                                double withdrawalAmount = sc.nextDouble();
+                                if(withdrawalAmount<1)
+                                    throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                                saving.withdraw(withdrawalAmount);
+                            }catch (InvalidAmountException e){
+                                System.out.println(e.message);
+                            }
                             break;
+
                         case 4:
                             System.out.println("Enter your interest rate");
                             float interestRate = sc.nextFloat();
@@ -112,14 +135,27 @@ public class BankingMain {
                             break;
                         case 2:
                             System.out.println("Enter amount to deposit: ");
-                            double depositAmount = sc.nextDouble();
-                            checking.deposit(depositAmount);
+                            try{
+                                double depositAmount = sc.nextDouble();
+                                if(depositAmount<1)
+                                    throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                                saving.deposit(depositAmount);
+                                break;
+                            } catch (InvalidAmountException e){
+                                System.out.println(e.message);
+                            }
                             break;
                         case 3:
-                            System.out.println("Enter amount to withdraw: ");
-                            double withdrawalAmount = sc.nextDouble();
-                            checking.withdraw(withdrawalAmount);
+                            try{
+                                double withdrawalAmount = sc.nextDouble();
+                                if(withdrawalAmount<1)
+                                    throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                                saving.withdraw(withdrawalAmount);
+                            }catch (InvalidAmountException e){
+                                System.out.println(e.message);
+                            }
                             break;
+
                         case 4:
                             flag = false;
                             break;

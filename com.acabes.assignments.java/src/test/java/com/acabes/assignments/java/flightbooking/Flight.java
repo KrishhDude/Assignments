@@ -17,7 +17,7 @@ class Flight{
     public int availableSeats = 100;
 
     public void getAvailableSeats() {
-        System.out.println("There are " + availableSeats + "seats available in this flight.");
+        System.out.println("There are " + availableSeats + " seats available in this flight.");
         System.out.println("Available seats: ");
         for(int i=0; i<100; i++){
             if(seats[i]==0){

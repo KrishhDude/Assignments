@@ -26,6 +26,8 @@ class Passenger implements BookingSystem {
         System.out.println("\n");
     }
 
+    //public boolean checkIfFlightExists
+
     public void bookFlight(int flightNumber) {
         //ArrayList<Integer> bookingNumber = new ArrayList<Integer>();
         int numOfSeats = 0;
