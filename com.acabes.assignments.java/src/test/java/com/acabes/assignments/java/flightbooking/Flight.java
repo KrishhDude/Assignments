@@ -9,10 +9,16 @@ class Flight{
         this.flightNumber = flightNumber;
     }
     ArrayList<Integer> seats = new ArrayList<Integer>(100);
-    int availableSeats = 100;
+    public int availableSeats = 100;
+
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
 
     void bookSeat(int numOfSeats){
-
+        availableSeats -= numOfSeats;
+        System.out.println("Tickets booked for " + numOfSeats + " seats");
+        System.out.println("Current available seats : " + availableSeats + "\n");
     }
 
 }
