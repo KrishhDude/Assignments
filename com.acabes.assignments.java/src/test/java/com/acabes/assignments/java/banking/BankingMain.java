@@ -88,15 +88,17 @@ public class BankingMain {
                             System.out.println(saving.viewbalance());
                             break;
                         case 2:
+
                             System.out.println("Enter amount to deposit: ");
                             try{
                                 double depositAmount = sc.nextDouble();
-                                if(depositAmount<1)
+                                if(depositAmount<1){
                                     throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                                }
                                 saving.deposit(depositAmount);
                                 break;
                             } catch (InvalidAmountException e){
-                                System.out.println(e.message);
+                                System.out.println(e.errorCode + ":" + e.message);
                             }
                             break;
 

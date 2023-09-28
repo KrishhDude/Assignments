@@ -10,20 +10,37 @@
         padding: 10px;
         scale:1.6;
     }
-    .form-row {
-        flex-direction: column;
+    .pagecontent{
         width: 100%;
+        margin: 0%;
     }
+    form{
+        display:grid;
+        grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d"
+        "e"
+        "f" ;
+    }
+    .item1{grid-area: a;}
+    .item2{grid-area: b;}
+    .item3{grid-area: c;}
+    .item4{grid-area: d;}
+    .item5{grid-area: e;}
+    .item6{grid-area: f;}
     .form-group {
-        flex: 1;
+        display: block;
     }
     .form-input{
         justify-content:left;
         padding: auto;
     }
-    .pagecontent{
-        margin: 0px;
+    .submitbtn{
+        width: min-content;
     }
+
     .card-container{
         display: flex;
         flex-direction: column;
@@ -31,6 +48,10 @@
     }
     .card-container > p{
         display: none;
+    }
+    .iframe-container{
+        position: absolute;
+        bottom: 0;
     }
 }
 @media screen and (max-width: 769px) {
