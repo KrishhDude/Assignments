@@ -8,17 +8,20 @@ class Passenger implements BookingSystem {
     Scanner sc = new Scanner(System.in);
 
     ArrayList<Flight> flights = new ArrayList<>(100);
+
     public Passenger() {
-        for(int i=0; i<3; i++){
-            flights.add(new Flight(1000+i+1));
+        for (int i = 0; i < 3; i++) {
+            flights.add(new Flight(1000 + i + 1));
         }
     }
-//    Flight[] flights = {
-//            new Flight(1001),
-//            new Flight(1002),
-//            new Flight(1003)
-//    };
 
+    /*
+     *Flight[] flights = {
+     *      new Flight(1001),
+     *      new Flight(1002),
+     *      new Flight(1003)
+        };
+    */
     public void getFlight() {
         for (Flight flight : flights) {
             System.out.print(flight.flightNumber + ", ");
@@ -41,15 +44,18 @@ class Passenger implements BookingSystem {
                 break;
             }
         }
-
-        if (!flightExists) {
-            System.out.println("The flight you requested does not exist. Please check again...\n");
-        } else {
+        try {
+            if (!flightExists) {
+                throw new FlightNotFoundException("Error: This Flight doesn't exist");
+            }
             foundFlight.getAvailableSeats();
             System.out.println("How many seats would you like to book?");
             numOfSeats = sc.nextInt();
             foundFlight.bookSeat(numOfSeats);
+        } catch (FlightNotFoundException e) {
+            System.out.println(e.message);
         }
+
     }
 
 
@@ -89,11 +95,13 @@ class Passenger implements BookingSystem {
                 break;
             }
         }
-        if (!flightExists) {
-            System.out.println("The flight you requested does not exist. Please check again...\n");
-        } else {
+        try {
+            if (!flightExists) {
+                throw new FlightNotFoundException("Error: This Flight doesn't exist");
+            }
             foundFlight.getAvailableSeats();
+        } catch (FlightNotFoundException e) {
+            System.out.println(e.message);
         }
     }
-
 }

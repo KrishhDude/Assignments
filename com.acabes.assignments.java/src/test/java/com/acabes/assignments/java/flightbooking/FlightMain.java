@@ -11,7 +11,7 @@ public class FlightMain {
                 What would you like to do today?
                 """);
         boolean flag = true;
-        while(flag){
+        while (flag) {
             System.out.println("""
                     1. Get the flights running today
                     2. Book a flight
@@ -27,15 +27,15 @@ public class FlightMain {
                     int flightNumber = sc.nextInt();
                     passenger.bookFlight(flightNumber);
                 }
-                case 3 ->{
+                case 3 -> {
                     System.out.println("Which flight did you want to cancel seats for?");
                     int flightNumber = sc.nextInt();
                     passenger.cancelFlight(flightNumber);
                 }
-                case 4 ->{
+                case 4 -> {
                     passenger.displaySeatAvailability();
                 }
-                case 5-> flag = false;
+                case 5 -> flag = false;
 
                 default -> throw new IllegalStateException("Unexpected value: " + choice);
             }

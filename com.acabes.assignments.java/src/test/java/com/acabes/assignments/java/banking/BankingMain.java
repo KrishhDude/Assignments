@@ -9,9 +9,18 @@ abstract class BankAccount{
     public double balance=50;
 
     void deposit(double depositAmount){
-        balance += depositAmount;
-        System.out.println("\nAmount deposited: " + depositAmount);
-        System.out.println("Curr avl balance: " + balance);
+        try{
+            if(depositAmount<1){
+                throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+            }
+            else{
+                balance += depositAmount;
+                System.out.println("\nAmount deposited: " + depositAmount);
+                System.out.println("Curr avl balance: " + balance);
+            }
+        } catch (InvalidAmountException e) {
+            System.out.println(e.errorCode + ':' + e.message);
+        }
     };
     abstract boolean withdraw(double withdrawalAmount) throws InsufficientFundException;
     double viewbalance(){
@@ -90,16 +99,8 @@ public class BankingMain {
                         case 2:
 
                             System.out.println("Enter amount to deposit: ");
-                            try{
-                                double depositAmount = sc.nextDouble();
-                                if(depositAmount<1){
-                                    throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
-                                }
-                                saving.deposit(depositAmount);
-                                break;
-                            } catch (InvalidAmountException e){
-                                System.out.println(e.errorCode + ":" + e.message);
-                            }
+                            double depositAmount = sc.nextDouble();
+                            saving.deposit(depositAmount);
                             break;
 
                         case 3:

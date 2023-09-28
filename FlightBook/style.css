@@ -50,8 +50,7 @@
         display: none;
     }
     .iframe-container{
-        position: absolute;
-        bottom: 0;
+        display: none;
     }
 }
 @media screen and (max-width: 769px) {

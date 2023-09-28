@@ -85,6 +85,6 @@ function closePopup() {
     const popup = document.getElementById("confirmation-popup");
     popup.style.display = "none";
 }
-function doBooking() {
-    window.location.href = 'landing.html';
-}
+// function doBooking() {
+//     window.location.href = 'landing.html';
+// }
