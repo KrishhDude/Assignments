@@ -50,6 +50,14 @@ class Passenger implements BookingSystem {
             }
             foundFlight.getAvailableSeats();
             System.out.println("How many seats would you like to book?");
+            try{
+                numOfSeats = sc.nextInt();
+                if(numOfSeats%1!=0){
+                    throw new InvalidInputException("Invalid Input");
+                }
+            } catch (InvalidInputException e) {
+                System.out.println(e.message);
+            }
             numOfSeats = sc.nextInt();
             foundFlight.bookSeat(numOfSeats);
         } catch (FlightNotFoundException e) {
@@ -71,14 +79,17 @@ class Passenger implements BookingSystem {
                 break;
             }
         }
-
-        if (!flightExists) {
-            System.out.println("The flight you requested does not exist. Please check again...\n");
-        } else {
-            foundFlight.getAvailableSeats();
-            System.out.println("How many seats would you like to cancel?");
-            numOfSeats = sc.nextInt();
-            foundFlight.cancelSeat(numOfSeats);
+        try {
+            if (!flightExists) {
+                throw new FlightNotFoundException("Error: This Flight doesn't exist");
+            } else {
+                foundFlight.getAvailableSeats();
+                System.out.println("How many seats would you like to cancel?");
+                numOfSeats = sc.nextInt();
+                foundFlight.cancelSeat(numOfSeats);
+            }
+        } catch (FlightNotFoundException e) {
+            System.out.println(e.message);
         }
     }
 
