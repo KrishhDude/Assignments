@@ -10,16 +10,37 @@ class Passenger implements BookingSystem {
     ArrayList<Flight> flights = new ArrayList<>(100);
 
 
-//    public Passenger() {
-//        for (int i = 0; i < 10; i++) {
-//            flights.add(new Flight(1000 + i + 1));
-//        }
-//    }
+    public void searchFlight(){
+        System.out.println("Enter departure date [in dd/mm/yy format]");
+        String searchDepartureDate = sc.next();
 
+        System.out.println("Enter Departure City: ");
+        String searchDepartureCity = sc.next();
 
-//    public void addFLight(Flight newFlight){
-//        flights.add(newFlight);
-//    }
+        System.out.println("Enter Destination City: ");
+        String searchDestinationCity = sc.next();
+
+        displayQueryFlights(searchDepartureDate, searchDepartureCity, searchDestinationCity);
+    }
+
+    private void displayQueryFlights(String depDate, String depCity, String destCity){
+        boolean foundFlights = false;
+
+        System.out.println("\nMatching Flights: ");
+        for (Flight flight : flights) {
+            if (flight.departureDate.equals(depDate) &&
+                    flight.departureCity.equalsIgnoreCase(depCity) &&
+                    flight.destinationCity.equalsIgnoreCase(destCity)) {
+                foundFlights = true;
+                flight.displayFlightDetails();
+                System.out.println("-----------------------");
+            }
+        }
+
+        if (!foundFlights) {
+            System.out.println("No matching flights found for the specified criteria.");
+        }
+    }
 
     public void getFlight() {
         for (Flight flight : flights) {

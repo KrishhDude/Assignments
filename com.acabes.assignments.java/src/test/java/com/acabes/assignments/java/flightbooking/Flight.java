@@ -45,13 +45,13 @@ class Flight {
     }
 
     public void displayFlightDetails(){
-        System.out.println("\nFlight Details for flight" + flightNumber + ": \n");
+        System.out.println("\nFlight Details for flight " + flightNumber + ": \n");
         System.out.println("Departure date: " + departureDate);
         System.out.println("Departure time: " + departureTime);
         System.out.println("Departure city: " + departureCity);
         System.out.println("Destination city: " + destinationCity);
         System.out.println("Price: $" + price);
-        System.out.println("Available Seats: " + (100 - availableSeats));
+        System.out.println("Available Seats: " + availableSeats);
     }
 
     void bookSeat(int numOfSeats) {
@@ -68,7 +68,6 @@ class Flight {
             }
         }
         System.out.println("\n");
-        //System.out.println("Current available seats : " + availableSeats + "\n");
     }
 
     void cancelSeat(int numOfSeats) {

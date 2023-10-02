@@ -1,5 +1,6 @@
 package com.acabes.assignments.java.flightbooking;
 
+import com.acabes.assignments.java.banking.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,50 +25,61 @@ public class FlightMain {
         Passenger passenger = new Passenger();
         AdminAccess admin = new AdminAccess();
         int userType;
-        System.out.println("""
+        while(true){
+            System.out.println("""
                 Hello and Welcome to Model Airways
                 How would you like to sign in?
                 1. User
                 2. Admin
                 """);
-        userType = sc.nextInt();
-        if(userType == 1){
-            boolean flag = true;
-            while (flag) {
-                System.out.println("""
+            userType = sc.nextInt();
+            if(userType == 1){
+                boolean flag = true;
+                while (flag) {
+                    System.out.println("""
                     What do you want to do today?
                     1. Get the flights running today
-                    2. Book a flight
-                    3. Cancel your booking
-                    4. Display seats availability
-                    5. Exit the system
+                    2. Search for a flight
+                    3. Display flight details
+                    4. Book a flight
+                    5. Cancel your booking
+                    6. Display seats availability
+                    7. Exit the system
                     """);
-                int choice = sc.nextInt();
-                switch (choice) {
-                    case 1 -> passenger.getFlight();
-                    case 2 -> {
-                        System.out.println("For which flight would you like to book?");
-                        int flightNumber = sc.nextInt();
-                        passenger.bookFlight(flightNumber);
-                    }
-                    case 3 -> {
-                        System.out.println("Which flight did you want to cancel seats for?");
-                        int flightNumber = sc.nextInt();
-                        passenger.cancelFlight(flightNumber);
-                    }
-                    case 4 -> {
-                        passenger.displaySeatAvailability();
-                    }
-                    case 5 -> flag = false;
+                    int choice = sc.nextInt();
+                    switch (choice) {
+                        case 1 -> passenger.getFlight();
+                        case 2 -> passenger.searchFlight();
+                        case 3 -> {
+                            System.out.println("Enter the flight number:");
+                            int selectedFlightNumber = sc.nextInt();
+                            displayFlightDetails(passenger.flights, selectedFlightNumber);
+                        }
+                        case 4 -> {
+                            System.out.println("For which flight would you like to book?");
+                            int flightNumber = sc.nextInt();
+                            passenger.bookFlight(flightNumber);
+                        }
+                        case 5 -> {
+                            System.out.println("Which flight did you want to cancel seats for?");
+                            int flightNumber = sc.nextInt();
+                            passenger.cancelFlight(flightNumber);
+                        }
+                        case 6 -> {
+                            passenger.displaySeatAvailability();
+                        }
+                        case 7 -> flag = false;
 
-                    default -> throw new IllegalStateException("Unexpected value: " + choice);
+                        default -> throw new IllegalStateException("Unexpected value: " + choice);
+                    }
                 }
-            }
-        } else if (userType == 2) {
-            if(admin.adminValidation()){
-                System.out.println("Success");
-                while(true){
-                    System.out.println("""
+            } else if (userType == 2) {
+                if(admin.adminValidation()){
+                    System.out.println("Success");
+                    boolean adminFlag = true;
+                    while(adminFlag){
+                        System.out.println("""
+                                        
                                         What would you like to do today?
                                         1. View the flight directory
                                         2. View flight details
@@ -75,48 +87,47 @@ public class FlightMain {
                                         4. Edit current flights
                                         5. Exit
                                         """);
-                    int choice = sc.nextInt();
-                    switch (choice){
-                        case 1:
-                            System.out.println("The following flights have been added:");
-                            passenger.getFlight();
-                            break;
-                        case 2:
-                            System.out.println("Enter the flight number:");
-                            int selectedFlightNumber = sc.nextInt();
-                            displayFlightDetails(passenger.flights, selectedFlightNumber);
-                            break;
-                        case 3:
-                            admin.addFLights(passenger.flights);
+                        int choice = sc.nextInt();
+                        switch (choice){
+                            case 1:
+                                System.out.println("The following flights have been added:");
+                                passenger.getFlight();
+                                break;
+                            case 2:
+                                System.out.println("Enter the flight number:");
+                                int selectedFlightNumber = sc.nextInt();
+                                displayFlightDetails(passenger.flights, selectedFlightNumber);
+                                break;
+                            case 3:
+                                admin.addFLights(passenger.flights);
 //                            System.out.println("Enter the flight number of a flight to be added");
 //                            int newFlightNumber = sc.nextInt();
 //                            passenger.addFLight(new Flight(newFlightNumber));
 //                            System.out.println("Added flight: " + newFlightNumber + "to the directory");
-                            break;
-                        case 4:
-                            System.out.println("Which flight would you like to edit");
-                            int flightNumber = sc.nextInt();
-                            admin.editFLights(flightNumber, passenger.flights);
-                            break;
-                        case 5:
-                            System.out.println("Exiting admin module...");
-                            break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + choice);
+                                break;
+                            case 4:
+                                System.out.println("Which flight would you like to edit");
+                                int flightNumber = sc.nextInt();
+                                admin.editFLights(flightNumber, passenger.flights);
+                                break;
+                            case 5:
+                                System.out.println("Exiting admin module...");
+                                adminFlag = false;
+                                break;
+                            default:
+                                throw new IllegalStateException("Unexpected value: " + choice);
+                        }
                     }
-
-
-
-
-
-
+                } else {
+                    System.out.println("Invalid Password. Try Again");
                 }
-            } else {
-                System.out.println("Invalid Password. Try Again");
-            }
 
-        } else {
-            throw new InvalidInputException("Invalid Input");
+            } else if(userType == 3) {
+                System.out.println("Thankyou for choosing us! Bye bye..");
+                break;
+            } else {
+                throw new InvalidInputException("Invalid Input");
+            }
         }
     }
 }
