@@ -48,9 +48,9 @@ public class FlightMain {
                 }
             }
         } else if (userType == 2) {
-            while(true){
-                if(admin.adminValidatiom()){
-                    System.out.println("Success");
+            if(admin.adminValidation()){
+                System.out.println("Success");
+                while(true){
                     System.out.println("""
                                         What would you like to do today?
                                         1. View the flight directory
@@ -58,12 +58,31 @@ public class FlightMain {
                                         3. Edit current flights
                                         4. To exit, type "exit"
                                         """);
-                    break;
+                    int choice = sc.nextInt();
+                    switch (choice){
+                        case 1:
+                            System.out.println("The following flights have been added:");
+                            passenger.getFlight();
+                            break;
+                        case 2:
+                            System.out.println("Enter the flight number of a flight to be added");
+                            int newFlightNumber = sc.nextInt();
+                            passenger.addFLight(new Flight(newFlightNumber));
+                            System.out.println("Added flight: " + newFlightNumber + "to the directory");
+                            break;
+                        case 3:
+                            break;
 
-                } else {
-                    System.out.println("Invalid Password. Try Again");
-                    break;
+                    }
+
+
+
+
+
+
                 }
+            } else {
+                System.out.println("Invalid Password. Try Again");
             }
 
         } else {

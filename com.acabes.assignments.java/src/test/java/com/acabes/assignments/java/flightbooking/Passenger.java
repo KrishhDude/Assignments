@@ -15,13 +15,11 @@ class Passenger implements BookingSystem {
         }
     }
 
-    /*
-     *Flight[] flights = {
-     *      new Flight(1001),
-     *      new Flight(1002),
-     *      new Flight(1003)
-        };
-    */
+
+    public void addFLight(Flight newFlight){
+        flights.add(newFlight);
+    }
+
     public void getFlight() {
         for (Flight flight : flights) {
             System.out.print(flight.flightNumber + ", ");
@@ -29,10 +27,24 @@ class Passenger implements BookingSystem {
         System.out.println("\n");
     }
 
-    //public boolean checkIfFlightExists
+    /*
+    public boolean checkIfFlightExists(int flightNumber){
+        boolean flightExists = false;
+        Flight foundFlight = null;
 
+        for (Flight flight : flights) {
+            if (flight.flightNumber == flightNumber) {
+                foundFlight = flight;
+                flightExists = true;
+                break;
+            }
+        }
+        return flightExists;
+    }
+    */
+
+    
     public void bookFlight(int flightNumber) {
-        //ArrayList<Integer> bookingNumber = new ArrayList<Integer>();
         int numOfSeats = 0;
         boolean flightExists = false;
         Flight foundFlight = null;

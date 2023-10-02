@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AdminAccess {
     private String password = "Admin@123";
-    boolean adminValidatiom(){
+    boolean adminValidation(){
         Scanner sc = new Scanner(System.in);
         String userPassword = "";
 
