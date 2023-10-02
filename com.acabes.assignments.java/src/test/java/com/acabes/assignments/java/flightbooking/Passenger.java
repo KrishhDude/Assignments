@@ -58,7 +58,6 @@ class Passenger implements BookingSystem {
             } catch (InvalidInputException e) {
                 System.out.println(e.message);
             }
-            numOfSeats = sc.nextInt();
             foundFlight.bookSeat(numOfSeats);
         } catch (FlightNotFoundException e) {
             System.out.println(e.message);
