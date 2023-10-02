@@ -9,16 +9,17 @@ class Passenger implements BookingSystem {
 
     ArrayList<Flight> flights = new ArrayList<>(100);
 
-    public Passenger() {
-        for (int i = 0; i < 3; i++) {
-            flights.add(new Flight(1000 + i + 1));
-        }
-    }
+
+//    public Passenger() {
+//        for (int i = 0; i < 10; i++) {
+//            flights.add(new Flight(1000 + i + 1));
+//        }
+//    }
 
 
-    public void addFLight(Flight newFlight){
-        flights.add(newFlight);
-    }
+//    public void addFLight(Flight newFlight){
+//        flights.add(newFlight);
+//    }
 
     public void getFlight() {
         for (Flight flight : flights) {
@@ -43,7 +44,7 @@ class Passenger implements BookingSystem {
     }
     */
 
-    
+
     public void bookFlight(int flightNumber) {
         int numOfSeats = 0;
         boolean flightExists = false;

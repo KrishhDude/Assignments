@@ -1,15 +1,28 @@
 package com.acabes.assignments.java.flightbooking;
 
 import java.util.Scanner;
+import java.util.Timer;
 
 class Flight {
     Scanner sc = new Scanner(System.in);
 
     int flightNumber;
+    String departureDate;
+    String departureTime;
+    String departureCity;
+    String destinationCity;
+    double price;
+
     int[] seats = new int[100];
 
-    public Flight(int flightNumber) {
+    public Flight(int flightNumber, String departureDate, String departureTime,
+                  String departureCity, String destinationCity, double price) {
         this.flightNumber = flightNumber;
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.departureCity = departureCity;
+        this.destinationCity = destinationCity;
+        this.price = price;
         for (int i = 0; i < 100; i++) {
             seats[i] = 0;
         }
@@ -29,6 +42,16 @@ class Flight {
             }
         }
         System.out.println("\n");
+    }
+
+    public void displayFlightDetails(){
+        System.out.println("\nFlight Details for flight" + flightNumber + ": \n");
+        System.out.println("Departure date: " + departureDate);
+        System.out.println("Departure time: " + departureTime);
+        System.out.println("Departure city: " + departureCity);
+        System.out.println("Destination city: " + destinationCity);
+        System.out.println("Price: $" + price);
+        System.out.println("Available Seats: " + (100 - availableSeats));
     }
 
     void bookSeat(int numOfSeats) {

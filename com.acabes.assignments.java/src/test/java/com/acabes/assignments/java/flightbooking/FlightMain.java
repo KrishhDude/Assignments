@@ -1,8 +1,24 @@
 package com.acabes.assignments.java.flightbooking;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FlightMain {
+
+    private static void displayFlightDetails(ArrayList<Flight> flights, int flightNumber){
+        boolean flightExists = false;
+        for (Flight flight : flights) {
+            if (flight.flightNumber == flightNumber) {
+                flightExists = true;
+                flight.displayFlightDetails();
+                break;
+            }
+        }
+        if (!flightExists) {
+            System.out.println("Flight with Flight Number " + flightNumber + " not found.");
+        }
+    }
+
     public static void main(String[] args) throws InvalidInputException {
         Scanner sc = new Scanner(System.in);
         Passenger passenger = new Passenger();
@@ -54,9 +70,10 @@ public class FlightMain {
                     System.out.println("""
                                         What would you like to do today?
                                         1. View the flight directory
-                                        2. Add a new flight
-                                        3. Edit current flights
-                                        4. To exit, type "exit"
+                                        2. View flight details
+                                        3. Add a new flight
+                                        4. Edit current flights
+                                        5. Exit
                                         """);
                     int choice = sc.nextInt();
                     switch (choice){
@@ -65,14 +82,27 @@ public class FlightMain {
                             passenger.getFlight();
                             break;
                         case 2:
-                            System.out.println("Enter the flight number of a flight to be added");
-                            int newFlightNumber = sc.nextInt();
-                            passenger.addFLight(new Flight(newFlightNumber));
-                            System.out.println("Added flight: " + newFlightNumber + "to the directory");
+                            System.out.println("Enter the flight number:");
+                            int selectedFlightNumber = sc.nextInt();
+                            displayFlightDetails(passenger.flights, selectedFlightNumber);
                             break;
                         case 3:
+                            admin.addFLights(passenger.flights);
+//                            System.out.println("Enter the flight number of a flight to be added");
+//                            int newFlightNumber = sc.nextInt();
+//                            passenger.addFLight(new Flight(newFlightNumber));
+//                            System.out.println("Added flight: " + newFlightNumber + "to the directory");
                             break;
-
+                        case 4:
+                            System.out.println("Which flight would you like to edit");
+                            int flightNumber = sc.nextInt();
+                            admin.editFLights(flightNumber, passenger.flights);
+                            break;
+                        case 5:
+                            System.out.println("Exiting admin module...");
+                            break;
+                        default:
+                            throw new IllegalStateException("Unexpected value: " + choice);
                     }
 
 
