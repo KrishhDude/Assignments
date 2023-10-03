@@ -1,4 +1,5 @@
 package com.acabes.assignments.java.flightbooking;
+import com.acabes.assignments.java.banking.BankingMain;
 
 import java.util.Scanner;
 import java.util.Timer;
@@ -44,6 +45,20 @@ class Flight {
         System.out.println("\n");
     }
 
+    public void getBookedSeats() {
+        System.out.println((100 - availableSeats) + " seats are booked");
+        System.out.println("Booked seats: ");
+        for (int i = 0; i < 100; i++) {
+            if (seats[i] == 1) {
+                System.out.print("| S" + (i + 1));
+                if((100-i-1)%25==0){
+                    System.out.println("\n");
+                }
+            }
+        }
+        System.out.println("\n");
+    }
+
     public void displayFlightDetails(){
         System.out.println("\nFlight Details for flight " + flightNumber + ": \n");
         System.out.println("Departure date: " + departureDate);
@@ -54,14 +69,22 @@ class Flight {
         System.out.println("Available Seats: " + availableSeats);
     }
 
-    void bookSeat(int numOfSeats) {
+    void bookSeat(int numOfSeats) throws InvalidInputException {
         System.out.println("Which seats would you like to book?");
         for (int i = 0; i < numOfSeats; i++) {
             int x = sc.nextInt();
-            seats[x - 1] = 1;
+            if (seats[x - 1] ==0 ){
+                seats[x - 1] = 1;
+            } else {
+                System.out.println("Error: That seat is already booked,please book another seat");
+            }
         }
-        availableSeats -= numOfSeats;
-        System.out.println("Tickets booked for " + numOfSeats + " seats");
+        System.out.println("Redirecting to payment portal...");
+        BankingMain.flightRedirect(numOfSeats, price, false);
+
+
+         availableSeats -= numOfSeats;
+        System.out.println("\nTickets booked for " + numOfSeats + " seats");
         for (int i = 0; i < numOfSeats; i++) {
             if (seats[i] == 1) {
                 System.out.print("| S" + (i + 1));
@@ -70,7 +93,7 @@ class Flight {
         System.out.println("\n");
     }
 
-    void cancelSeat(int numOfSeats) {
+    void cancelSeat(int numOfSeats) throws InvalidInputException {
         System.out.println("Which seats would you like to cancel?");
         for (int i = 0; i < numOfSeats; i++) {
             int x = sc.nextInt();
@@ -80,6 +103,8 @@ class Flight {
                 System.out.println("Error: That seat is already empty.");
             }
         }
+        BankingMain.flightRedirect(numOfSeats, price, true);
+        availableSeats += numOfSeats;
     }
 
     void displaySeats(int flightNumber) {

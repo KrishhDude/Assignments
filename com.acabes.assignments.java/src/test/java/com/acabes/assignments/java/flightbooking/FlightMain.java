@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class FlightMain {
 
     private static void displayFlightDetails(ArrayList<Flight> flights, int flightNumber){
+
+
         boolean flightExists = false;
         for (Flight flight : flights) {
             if (flight.flightNumber == flightNumber) {
@@ -27,6 +29,7 @@ public class FlightMain {
         int userType;
         while(true){
             System.out.println("""
+                
                 Hello and Welcome to Model Airways
                 How would you like to sign in?
                 1. User
@@ -37,6 +40,7 @@ public class FlightMain {
                 boolean flag = true;
                 while (flag) {
                     System.out.println("""
+                    
                     What do you want to do today?
                     1. Get the flights running today
                     2. Search for a flight
@@ -123,7 +127,7 @@ public class FlightMain {
                 }
 
             } else if(userType == 3) {
-                System.out.println("Thankyou for choosing us! Bye bye..");
+                System.out.println("Thank-you for choosing us! Bye bye..");
                 break;
             } else {
                 throw new InvalidInputException("Invalid Input");

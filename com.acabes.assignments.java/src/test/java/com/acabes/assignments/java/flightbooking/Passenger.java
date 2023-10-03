@@ -49,37 +49,20 @@ class Passenger implements BookingSystem {
         System.out.println("\n");
     }
 
-    /*
-    public boolean checkIfFlightExists(int flightNumber){
-        boolean flightExists = false;
-        Flight foundFlight = null;
-
+    private Flight findFlightByNumber (int flightNumber ){
         for (Flight flight : flights) {
             if (flight.flightNumber == flightNumber) {
-                foundFlight = flight;
-                flightExists = true;
-                break;
+                return flight;
             }
         }
-        return flightExists;
+        return null;
     }
-    */
-
 
     public void bookFlight(int flightNumber) {
         int numOfSeats = 0;
-        boolean flightExists = false;
-        Flight foundFlight = null;
-
-        for (Flight flight : flights) {
-            if (flight.flightNumber == flightNumber) {
-                foundFlight = flight;
-                flightExists = true;
-                break;
-            }
-        }
+        Flight foundFlight = findFlightByNumber(flightNumber);
         try {
-            if (!flightExists) {
+            if (foundFlight == null) {
                 throw new FlightNotFoundException("Error: This Flight doesn't exist");
             }
             foundFlight.getAvailableSeats();
@@ -95,6 +78,8 @@ class Passenger implements BookingSystem {
             foundFlight.bookSeat(numOfSeats);
         } catch (FlightNotFoundException e) {
             System.out.println(e.message);
+        } catch (InvalidInputException e) {
+            throw new RuntimeException(e);
         }
 
     }
@@ -102,45 +87,29 @@ class Passenger implements BookingSystem {
 
     public void cancelFlight(int flightNumber) {
         int numOfSeats = 0;
-        boolean flightExists = false;
-        Flight foundFlight = null;
-
-        for (Flight flight : flights) {
-            if (flight.flightNumber == flightNumber) {
-                foundFlight = flight;
-                flightExists = true;
-                break;
-            }
-        }
+        Flight foundFlight = findFlightByNumber(flightNumber);
         try {
-            if (!flightExists) {
+            if (foundFlight == null) {
                 throw new FlightNotFoundException("Error: This Flight doesn't exist");
             } else {
-                foundFlight.getAvailableSeats();
+                foundFlight.getBookedSeats();
                 System.out.println("How many seats would you like to cancel?");
                 numOfSeats = sc.nextInt();
                 foundFlight.cancelSeat(numOfSeats);
             }
         } catch (FlightNotFoundException e) {
             System.out.println(e.message);
+        } catch (InvalidInputException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void displaySeatAvailability() {
         System.out.println("Enter the flight number: ");
         int flightNumber = sc.nextInt();
-        boolean flightExists = false;
-        Flight foundFlight = null;
-
-        for (Flight flight : flights) {
-            if (flight.flightNumber == flightNumber) {
-                foundFlight = flight;
-                flightExists = true;
-                break;
-            }
-        }
+        Flight foundFlight = findFlightByNumber(flightNumber);
         try {
-            if (!flightExists) {
+            if (foundFlight == null) {
                 throw new FlightNotFoundException("Error: This Flight doesn't exist");
             }
             foundFlight.getAvailableSeats();
@@ -148,4 +117,18 @@ class Passenger implements BookingSystem {
             System.out.println(e.message);
         }
     }
+    
+    /*
+     Redundant code, putting here just for reference
+        boolean flightExists = false;
+        Flight foundFlight = null;
+
+        for (Flight flight : flights) {
+            if (flight.flightNumber == flightNumber) {
+                foundFlight = flight;
+                flightExists = true;
+                break;
+            }
+        }
+     */
 }

@@ -1,12 +1,14 @@
 package com.acabes.assignments.java.banking;
 
-import java.util.InvalidPropertiesFormatException;
+import com.acabes.assignments.java.flightbooking.InvalidInputException;
+
 import java.util.Scanner;
+
 
 abstract class BankAccount{
     public long accountNumber = 101010;
     public String accountHolder="John Doe";
-    public double balance=50;
+    public double balance=100000;
 
     void deposit(double depositAmount){
         try{
@@ -25,6 +27,54 @@ abstract class BankAccount{
     abstract boolean withdraw(double withdrawalAmount) throws InsufficientFundException;
     double viewbalance(){
         return balance;
+    }
+}
+
+class FlightModuleBanking {
+    SavingAccount savingAccount = new SavingAccount();
+    CheckingAccount checkingAccount = new CheckingAccount();
+
+    void selectAccountType(int numOfSeats, double price, boolean isCancellation) throws InvalidInputException {
+
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        double transactionAmount = numOfSeats * price;
+
+        System.out.println("\n\nPlease select an account type:");
+        System.out.println("""
+                            1. Savings Account
+                            2. Checking Account
+                            """);
+        choice = sc.nextInt();
+        if (choice == 1) {
+            if(isCancellation) {
+                savingAccount.deposit(transactionAmount);
+            } else {
+                try {
+                    if (transactionAmount < 1)
+                        throw new InvalidAmountException(101, "Invalid Amount Entered", "Enter a valid amount to complete the transaction");
+                    savingAccount.withdraw(transactionAmount);
+                } catch (InvalidAmountException e) {
+                    System.out.println(e.message);
+                } catch (InsufficientFundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } else if (choice == 2) {
+            if(isCancellation) {
+                checkingAccount.deposit(transactionAmount);
+            } else {
+                try{
+                    if(transactionAmount<1)
+                        throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
+                    checkingAccount.withdraw(transactionAmount);
+                }catch (InvalidAmountException e){
+                    System.out.println(e.message);
+                }
+            }
+        } else {
+            throw new InvalidInputException("Invalid input. Input should be either 1 or 2!");
+        }
     }
 }
 
@@ -73,6 +123,14 @@ class CheckingAccount extends BankAccount{
 }
 
 public class BankingMain {
+
+    private static FlightModuleBanking flightbank = new FlightModuleBanking();
+
+    public static void flightRedirect(int numOfSeats, double price, boolean isCancellation) throws InvalidInputException {
+        flightbank.selectAccountType(numOfSeats, price, isCancellation);
+    }
+
+
     public static void main(String[] args) throws InsufficientFundException {
         Scanner sc = new Scanner(System.in);
         SavingAccount saving = new SavingAccount();
@@ -86,6 +144,7 @@ public class BankingMain {
             System.out.println("\n\nPlease select your account type:\n" +
                                 "1: Savings Account \n2: Checking Account\n3: Exit System");
             int accountType = sc.nextInt();
+
             if(accountType == 1){
                 boolean flag = true;
                 while(flag){
@@ -142,7 +201,7 @@ public class BankingMain {
                                 double depositAmount = sc.nextDouble();
                                 if(depositAmount<1)
                                     throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
-                                saving.deposit(depositAmount);
+                                checking.deposit(depositAmount);
                                 break;
                             } catch (InvalidAmountException e){
                                 System.out.println(e.message);
@@ -153,7 +212,7 @@ public class BankingMain {
                                 double withdrawalAmount = sc.nextDouble();
                                 if(withdrawalAmount<1)
                                     throw new InvalidAmountException(101,"Invalid Amount Entered","Enter a valid amount to complete the transaction");
-                                saving.withdraw(withdrawalAmount);
+                                checking.withdraw(withdrawalAmount);
                             }catch (InvalidAmountException e){
                                 System.out.println(e.message);
                             }
