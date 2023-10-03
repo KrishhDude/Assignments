@@ -14,7 +14,7 @@ public class TestList {
         String nameToRemove;
 
         List<String> myList = new ArrayList<>(10);
-        Iterator<String> iter = myList.iterator();
+        //Iterator<String> iter = myList.iterator();
 
         System.out.println("Enter names");
         for(int i=0; i<10; i++){

@@ -1,14 +1,24 @@
 package com.acabes.assignments.java.testslists;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class TestSortMap {
 
     static void sortMap(HashMap<String, Integer> hmap){
         TreeMap<String, Integer> sorted = new TreeMap<>(hmap);
-        for(Map.Entry<String, Integer> entry: sorted.entrySet()) {
-            System.out.println();
-        }
+//        for(Map.Entry<String, Integer> entry: sorted.entrySet()) {
+//            System.out.println();
+//        }
+//         sorted.entrySet().stream().forEach(entry -> System.out.println("Key: " + entry.getKey()+ ", Value: " + entry.getValue()));
+
+
+        String result2 = sorted.entrySet().stream().map(entry -> "Key: " + entry.getKey() + ", Value: " + entry.getValue())
+                .collect(Collectors.joining("\n"));
+
+
+        //System.out.println(result);
+        System.out.println(result2);
     }
 
     public static void main(String[] args) {

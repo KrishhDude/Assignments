@@ -9,8 +9,7 @@ public class TestMapStream {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        HashMap<String, Integer> stringIntegerHashMap = new HashMap<>();
-        Map<String,Integer> friends= stringIntegerHashMap;
+        Map<String,Integer> friends= new HashMap<>();
 
         friends.put("Kp", 22);
         friends.put("Fincy", 23);

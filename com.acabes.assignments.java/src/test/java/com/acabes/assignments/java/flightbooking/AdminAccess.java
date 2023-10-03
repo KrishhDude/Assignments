@@ -17,6 +17,15 @@ public class AdminAccess {
         return password.equals(userPassword);
     }
 
+    Flight findFlightByNumber(int flightNumber, ArrayList<Flight> flights) {
+        for (Flight flight : flights) {
+            if (flight.flightNumber == flightNumber) {
+                return flight;
+            }
+        }
+        return null;
+    }
+
     void addFLights(ArrayList<Flight> flights) {
         System.out.println("Enter Flight Number: ");
         int flightNumber = sc.nextInt();
@@ -45,35 +54,92 @@ public class AdminAccess {
     void editFLights(int flightNumber, ArrayList<Flight> flights) throws InvalidInputException {
 
         int choice;
+        Flight foundFlight = findFlightByNumber(flightNumber, flights);
+        boolean editFlag = true;
 
-        System.out.println("""
-                What would you like to do?
-                1. Remove the flight
-                2. Change date
-                """);
-        choice = sc.nextInt();
-        if (choice == 1) {
-            Flight foundFlight = null;
-
-
-            for (Flight flight : flights) {
-                if (flight.flightNumber == flightNumber) {
-                    foundFlight = flight;
+        while (editFlag) {
+            System.out.println("""
+                    What would you like to do?
+                    1. Remove the flight
+                    2. Change date
+                    3. Change locations
+                    4. Change price
+                    5. Exit edit menu
+                                    
+                    """);
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    if (foundFlight != null) {
+                        flights.remove(foundFlight);
+                        System.out.println("Flight removed successfully");
+                    } else {
+                        System.out.println("Flight Not Found");
+                    }
                     break;
+
+                case 2:
+                    System.out.println("Enter new date (dd/mm/yy)");
+                    foundFlight.departureDate = sc.next();
+                    break;
+
+                case 3:
+                    System.out.println("""
+                            1. Edit Departure Location
+                            2. Edit Arrival Location
+                            """);
+                    int locationEditChoice = 0;
+                    try {
+                        locationEditChoice = sc.nextInt();
+                        if (locationEditChoice % 1 != 0) {
+                            throw new InvalidInputException("Enter a valid integer input");
+                        }
+                    } catch (InvalidInputException e) {
+                        System.out.println(e.message);
+                    }
+                    if (locationEditChoice == 1) {
+                        System.out.println("Enter new Departure location");
+                        foundFlight.departureCity = sc.next();
+                    } else if (locationEditChoice == 2) {
+                        System.out.println("Enter new Arrival Location");
+                        foundFlight.destinationCity = sc.next();
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Enter new price: ");
+                    foundFlight.price = sc.nextDouble();
+
+                case 5:
+                    System.out.println("Exiting edit menu...");
+                    editFlag = false;
+                    break;
+
+                default:
+                    throw new InvalidInputException("Invalid input. Please enter a valid choice");
+
+            }
+            /*
+            if (choice == 1) {
+                if (foundFlight != null) {
+                    flights.remove(foundFlight);
+                    System.out.println("Flight removed successfully");
+                } else {
+                    System.out.println("Flight Not Found");
                 }
-            }
-            if (foundFlight != null) {
-                flights.remove(foundFlight);
-                System.out.println("Flight removed successfully");
+
+
+            } else if (choice == 2) {
+                System.out.println("Enter new date (dd/mm/yy)");
+                foundFlight.departureDate = sc.next();
+
             } else {
-                System.out.println("Flight Not Found");
+                throw new InvalidInputException("Invalid input. Please enter a valid choice");
             }
+             */
 
-
-        } else if (choice == 2) {
-
-        } else {
-            throw new InvalidInputException("Invalid input. Please enter a valid choice");
         }
     }
 }

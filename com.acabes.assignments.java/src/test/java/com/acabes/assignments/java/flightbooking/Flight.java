@@ -16,6 +16,7 @@ class Flight {
     double price;
 
     int[] seats = new int[100];
+    public int availableSeats = 100;
 
     public Flight(int flightNumber, String departureDate, String departureTime,
                   String departureCity, String destinationCity, double price) {
@@ -30,7 +31,6 @@ class Flight {
         }
     }
 
-    public int availableSeats = 100;
 
     public void getAvailableSeats() {
         System.out.println("There are " + availableSeats + " seats available in this flight.");

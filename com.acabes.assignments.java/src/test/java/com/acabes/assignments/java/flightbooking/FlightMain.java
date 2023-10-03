@@ -35,6 +35,7 @@ public class FlightMain {
                     How would you like to sign in?
                     1. User
                     2. Admin
+                    3. Exit system
                     """);
             userType = sc.nextInt();
             if (userType == 1) {
