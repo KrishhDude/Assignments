@@ -7,7 +7,8 @@ public class AdminAccess {
     private String password = "Admin@123";
 
     Scanner sc = new Scanner(System.in);
-    boolean adminValidation(){
+
+    boolean adminValidation() {
         Scanner sc = new Scanner(System.in);
         String userPassword = "";
 
@@ -16,7 +17,7 @@ public class AdminAccess {
         return password.equals(userPassword);
     }
 
-    void addFLights(ArrayList<Flight> flights){
+    void addFLights(ArrayList<Flight> flights) {
         System.out.println("Enter Flight Number: ");
         int flightNumber = sc.nextInt();
 
@@ -40,7 +41,8 @@ public class AdminAccess {
 
         System.out.println("Flight added successfully!");
     }
-    void editFLights(int flightNumber, ArrayList<Flight> flights){
+
+    void editFLights(int flightNumber, ArrayList<Flight> flights) throws InvalidInputException {
 
         int choice;
 
@@ -71,7 +73,7 @@ public class AdminAccess {
         } else if (choice == 2) {
 
         } else {
-
+            throw new InvalidInputException("Invalid input. Please enter a valid choice");
         }
     }
 }

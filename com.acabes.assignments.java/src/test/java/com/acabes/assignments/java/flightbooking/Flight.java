@@ -1,4 +1,5 @@
 package com.acabes.assignments.java.flightbooking;
+
 import com.acabes.assignments.java.banking.BankingMain;
 
 import java.util.Scanner;
@@ -37,7 +38,7 @@ class Flight {
         for (int i = 0; i < 100; i++) {
             if (seats[i] == 0) {
                 System.out.print("| S" + (i + 1));
-                if((100-i-1)%25==0){
+                if ((100 - i - 1) % 25 == 0) {
                     System.out.println("\n");
                 }
             }
@@ -51,7 +52,7 @@ class Flight {
         for (int i = 0; i < 100; i++) {
             if (seats[i] == 1) {
                 System.out.print("| S" + (i + 1));
-                if((100-i-1)%25==0){
+                if ((100 - i - 1) % 25 == 0) {
                     System.out.println("\n");
                 }
             }
@@ -59,7 +60,7 @@ class Flight {
         System.out.println("\n");
     }
 
-    public void displayFlightDetails(){
+    public void displayFlightDetails() {
         System.out.println("\nFlight Details for flight " + flightNumber + ": \n");
         System.out.println("Departure date: " + departureDate);
         System.out.println("Departure time: " + departureTime);
@@ -73,7 +74,7 @@ class Flight {
         System.out.println("Which seats would you like to book?");
         for (int i = 0; i < numOfSeats; i++) {
             int x = sc.nextInt();
-            if (seats[x - 1] ==0 ){
+            if (seats[x - 1] == 0) {
                 seats[x - 1] = 1;
             } else {
                 System.out.println("Error: That seat is already booked,please book another seat");
@@ -83,7 +84,7 @@ class Flight {
         BankingMain.flightRedirect(numOfSeats, price, false);
 
 
-         availableSeats -= numOfSeats;
+        availableSeats -= numOfSeats;
         System.out.println("\nTickets booked for " + numOfSeats + " seats");
         for (int i = 0; i < numOfSeats; i++) {
             if (seats[i] == 1) {

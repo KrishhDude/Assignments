@@ -1,16 +1,34 @@
 package com.acabes.assignments.java.flightbooking;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class Passenger implements BookingSystem {
 
     Scanner sc = new Scanner(System.in);
 
-    ArrayList<Flight> flights = new ArrayList<>(100);
+    ArrayList<Flight> flights = new ArrayList<>();
 
+    public Passenger(){
+        Flight[] flightArray = {
+                new Flight(1001, "12/12/23", "09:00", "Cochin", "Dubai", 120),
+                new Flight(1002, "13/12/23", "18:00", "Dubai", "Cochin", 150),
+                new Flight(1003, "10/12/23", "23:00", "Cochin", "JFK", 200),
+                new Flight(1004, "09/12/23", "15:45", "Cochin", "NewYork", 250),
+                new Flight(1005, "15/12/23", "00:50", "Cochin", "Amman", 200),
+                new Flight(1005, "10/12/23", "01:50", "Amman", "Cochin", 250),
+                new Flight(1005, "09/12/23", "03:00", "Cochin", "Perth", 300),
+                new Flight(1005, "01/12/23", "19:45", "Perth", "Cochin", 300),
+                new Flight(1005, "30/12/23", "15:30", "Cochin", "Delhi", 75),
+                new Flight(1005, "14/12/23", "07:20", "Delhi", "Cochin", 80)
+        };
 
-    public void searchFlight(){
+        // Ensure that Flight class has a proper toString() method or modify this loop accordingly
+        flights.addAll(Arrays.asList(flightArray));
+    }
+
+    public void searchFlight() {
         System.out.println("Enter departure date [in dd/mm/yy format]");
         String searchDepartureDate = sc.next();
 
@@ -23,7 +41,7 @@ class Passenger implements BookingSystem {
         displayQueryFlights(searchDepartureDate, searchDepartureCity, searchDestinationCity);
     }
 
-    private void displayQueryFlights(String depDate, String depCity, String destCity){
+    private void displayQueryFlights(String depDate, String depCity, String destCity) {
         boolean foundFlights = false;
 
         System.out.println("\nMatching Flights: ");
@@ -49,7 +67,7 @@ class Passenger implements BookingSystem {
         System.out.println("\n");
     }
 
-    private Flight findFlightByNumber (int flightNumber ){
+    private Flight findFlightByNumber(int flightNumber) {
         for (Flight flight : flights) {
             if (flight.flightNumber == flightNumber) {
                 return flight;
@@ -67,9 +85,9 @@ class Passenger implements BookingSystem {
             }
             foundFlight.getAvailableSeats();
             System.out.println("How many seats would you like to book?");
-            try{
+            try {
                 numOfSeats = sc.nextInt();
-                if(numOfSeats%1!=0){
+                if (numOfSeats % 1 != 0) {
                     throw new InvalidInputException("Invalid Input");
                 }
             } catch (InvalidInputException e) {
@@ -79,7 +97,7 @@ class Passenger implements BookingSystem {
         } catch (FlightNotFoundException e) {
             System.out.println(e.message);
         } catch (InvalidInputException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.message);
         }
 
     }

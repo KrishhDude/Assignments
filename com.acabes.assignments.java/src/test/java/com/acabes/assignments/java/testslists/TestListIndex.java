@@ -9,7 +9,7 @@ public class TestListIndex {
     static void searchTown(HashMap<String,String> hmap, String name){
         if(hmap.containsKey(name)){
             String townName = hmap.get(name);
-            System.out.println("Town of " + name + " " + townName);
+            System.out.println("Town of " + name + " is " + townName);
         }
     }
 

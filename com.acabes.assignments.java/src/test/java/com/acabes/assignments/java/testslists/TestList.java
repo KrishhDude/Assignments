@@ -11,6 +11,7 @@ public class TestList {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String nameToRemove;
 
         List<String> myList = new ArrayList<>(10);
         Iterator<String> iter = myList.iterator();
@@ -19,6 +20,12 @@ public class TestList {
         for(int i=0; i<10; i++){
             myList.add(sc.nextLine());
         }
+
+        System.out.println(myList);
+
+        System.out.println("Enter name to remove:");
+        nameToRemove = sc.next();
+        myList.remove(nameToRemove);
 
         System.out.println(myList);
 

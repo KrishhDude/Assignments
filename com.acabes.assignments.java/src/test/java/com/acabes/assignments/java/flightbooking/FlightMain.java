@@ -1,12 +1,13 @@
 package com.acabes.assignments.java.flightbooking;
 
 import com.acabes.assignments.java.banking.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FlightMain {
 
-    private static void displayFlightDetails(ArrayList<Flight> flights, int flightNumber){
+    private static void displayFlightDetails(ArrayList<Flight> flights, int flightNumber) {
 
 
         boolean flightExists = false;
@@ -27,29 +28,29 @@ public class FlightMain {
         Passenger passenger = new Passenger();
         AdminAccess admin = new AdminAccess();
         int userType;
-        while(true){
+        while (true) {
             System.out.println("""
-                
-                Hello and Welcome to Model Airways
-                How would you like to sign in?
-                1. User
-                2. Admin
-                """);
+                                    
+                    Hello and Welcome to Model Airways
+                    How would you like to sign in?
+                    1. User
+                    2. Admin
+                    """);
             userType = sc.nextInt();
-            if(userType == 1){
+            if (userType == 1) {
                 boolean flag = true;
                 while (flag) {
                     System.out.println("""
-                    
-                    What do you want to do today?
-                    1. Get the flights running today
-                    2. Search for a flight
-                    3. Display flight details
-                    4. Book a flight
-                    5. Cancel your booking
-                    6. Display seats availability
-                    7. Exit the system
-                    """);
+                                                
+                            What do you want to do today?
+                            1. Get the flights running today
+                            2. Search for a flight
+                            3. Display flight details
+                            4. Book a flight
+                            5. Cancel your booking
+                            6. Display seats availability
+                            7. Exit the system
+                            """);
                     int choice = sc.nextInt();
                     switch (choice) {
                         case 1 -> passenger.getFlight();
@@ -78,21 +79,21 @@ public class FlightMain {
                     }
                 }
             } else if (userType == 2) {
-                if(admin.adminValidation()){
+                if (admin.adminValidation()) {
                     System.out.println("Success");
                     boolean adminFlag = true;
-                    while(adminFlag){
+                    while (adminFlag) {
                         System.out.println("""
-                                        
-                                        What would you like to do today?
-                                        1. View the flight directory
-                                        2. View flight details
-                                        3. Add a new flight
-                                        4. Edit current flights
-                                        5. Exit
-                                        """);
+                                                                        
+                                What would you like to do today?
+                                1. View the flight directory
+                                2. View flight details
+                                3. Add a new flight
+                                4. Edit current flights
+                                5. Exit
+                                """);
                         int choice = sc.nextInt();
-                        switch (choice){
+                        switch (choice) {
                             case 1:
                                 System.out.println("The following flights have been added:");
                                 passenger.getFlight();
@@ -126,7 +127,7 @@ public class FlightMain {
                     System.out.println("Invalid Password. Try Again");
                 }
 
-            } else if(userType == 3) {
+            } else if (userType == 3) {
                 System.out.println("Thank-you for choosing us! Bye bye..");
                 break;
             } else {
