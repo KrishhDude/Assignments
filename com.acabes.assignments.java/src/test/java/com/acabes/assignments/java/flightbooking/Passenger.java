@@ -12,16 +12,16 @@ class Passenger implements BookingSystem {
 
     public Passenger(){
         Flight[] flightArray = {
-                new Flight(1001, "12/12/23", "09:00", "Cochin", "Dubai", 120),
-                new Flight(1002, "13/12/23", "18:00", "Dubai", "Cochin", 150),
-                new Flight(1003, "10/12/23", "23:00", "Cochin", "JFK", 200),
-                new Flight(1004, "09/12/23", "15:45", "Cochin", "NewYork", 250),
-                new Flight(1005, "15/12/23", "00:50", "Cochin", "Amman", 200),
-                new Flight(1005, "10/12/23", "01:50", "Amman", "Cochin", 250),
-                new Flight(1005, "09/12/23", "03:00", "Cochin", "Perth", 300),
-                new Flight(1005, "01/12/23", "19:45", "Perth", "Cochin", 300),
-                new Flight(1005, "30/12/23", "15:30", "Cochin", "Delhi", 75),
-                new Flight(1005, "14/12/23", "07:20", "Delhi", "Cochin", 80)
+                new Flight(1001, "12/12/23", "09:00", "COCHIN", "DUBAI", 120),
+                new Flight(1002, "13/12/23", "18:00", "DUBAI", "COCHIN", 150),
+                new Flight(1003, "10/12/23", "23:00", "COCHIN", "JFK", 200),
+                new Flight(1004, "09/12/23", "15:45", "COCHIN", "NEWYORK", 250),
+                new Flight(1005, "15/12/23", "00:50", "COCHIN", "AMMAN", 200),
+                new Flight(1005, "10/12/23", "01:50", "AMMAN", "COCHIN", 250),
+                new Flight(1005, "09/12/23", "03:00", "COCHIN", "PERTH", 300),
+                new Flight(1005, "01/12/23", "19:45", "PERTH", "COCHIN", 300),
+                new Flight(1005, "30/12/23", "15:30", "COCHIN", "DELHI", 75),
+                new Flight(1005, "14/12/23", "07:20", "DELHI", "COCHIN", 80)
         };
 
         // Ensure that Flight class has a proper toString() method or modify this loop accordingly
@@ -33,10 +33,10 @@ class Passenger implements BookingSystem {
         String searchDepartureDate = sc.next();
 
         System.out.println("Enter Departure City: ");
-        String searchDepartureCity = sc.next();
+        String searchDepartureCity = sc.next().toUpperCase();
 
         System.out.println("Enter Destination City: ");
-        String searchDestinationCity = sc.next();
+        String searchDestinationCity = sc.next().toUpperCase();
 
         displayQueryFlights(searchDepartureDate, searchDepartureCity, searchDestinationCity);
     }

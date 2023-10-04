@@ -48,7 +48,6 @@ public class TestList {
                 }
             } catch (InvalidInputException e) {
                 System.out.println("Invalid input, the entered string does not exist within the list");
-                sc.nextLine();
             }
         }
     }

@@ -99,10 +99,10 @@ public class AdminAccess {
                     }
                     if (locationEditChoice == 1) {
                         System.out.println("Enter new Departure location");
-                        foundFlight.departureCity = sc.next();
+                        foundFlight.departureCity = sc.next().toUpperCase();
                     } else if (locationEditChoice == 2) {
                         System.out.println("Enter new Arrival Location");
-                        foundFlight.destinationCity = sc.next();
+                        foundFlight.destinationCity = sc.next().toUpperCase();
                     } else {
                         System.out.println("Invalid input");
                     }
