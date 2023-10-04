@@ -1,4 +1,4 @@
-package com.acabes.assignments.java.stringfunctions;
+package com.acabes.assignments.java.collections.stringfunctions;
 
 public class ReverseString {
     public static void main(String[] args) {

@@ -1,4 +1,6 @@
-package com.acabes.assignments.java.testslists;
+package com.acabes.assignments.java.collections.testslists;
+
+import com.acabes.assignments.java.flightbooking.InvalidInputException;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -10,6 +12,8 @@ public class TestListIndex {
         if(hmap.containsKey(name)){
             String townName = hmap.get(name);
             System.out.println("Town of " + name + " is " + townName);
+        } else {
+            System.out.println("The value " + name + "does not exist within the list");
         }
     }
 
@@ -25,12 +29,20 @@ public class TestListIndex {
             System.out.println("Enter name and town:\n" +
                     "If stop: Enter stop");
 
-            inputName = sc.nextLine();
-            if(Objects.equals(inputName, "stop")){
-                break;
+            try{
+                inputName = sc.nextLine();
+                if(Objects.equals(inputName, "stop")){
+                    break;
+                }
+                inputTown = sc.nextLine();
+                if(inputName.matches("^[a-zA-Z ]+$") && inputTown.matches("^[a-zA-Z ]+$")) {
+                    hmap.put(inputName, inputTown);
+                } else {
+                    throw new InvalidInputException("Invalid Input");
+                }
+            } catch (InvalidInputException e) {
+                System.out.println("Invalid input, please enter a string value for name and town");
             }
-            inputTown = sc.nextLine();
-            hmap.put(inputName, inputTown);
         }
         System.out.println(hmap);
 

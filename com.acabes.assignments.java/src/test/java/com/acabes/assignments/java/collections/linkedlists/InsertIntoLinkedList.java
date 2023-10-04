@@ -1,4 +1,4 @@
-package com.acabes.assignments.java.linkedlists;
+package com.acabes.assignments.java.collections.linkedlists;
 
 import java.util.LinkedList;
 //

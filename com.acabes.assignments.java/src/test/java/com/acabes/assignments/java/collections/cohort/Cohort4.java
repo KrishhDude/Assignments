@@ -1,12 +1,12 @@
-package com.acabes.assignments.java.cohort;
+package com.acabes.assignments.java.collections.cohort;
 
 import java.util.Date;
 
 class Cohort4 {
-    String name;
-    int age;
-    String city;
-    Date dateOfBirth;
+    private String name;
+    private int age;
+    private String city;
+    private Date dateOfBirth;
 
     public Cohort4(String name, int age, String city, Date dateOfBirth) {
         this.name = name;
@@ -21,6 +21,14 @@ class Cohort4 {
 
     public int getAge() {
         return age;
+    }
+
+    public java.lang.String getCity() {
+        return city;
+    }
+
+    public Date getDob() {
+        return dateOfBirth;
     }
 
 }

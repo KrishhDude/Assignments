@@ -1,34 +1,39 @@
-package com.acabes.assignments.java.cohort;
+package com.acabes.assignments.java.collections.cohort;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CohortMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 
         List<Cohort1> cohort1List = new ArrayList<>();
         List<Cohort4> cohort4List = new ArrayList<>();
+
         addToCohort1(cohort1List);
         addToCohort4(cohort4List);
-        System.out.println("Cohort 1");
-        for(Cohort1 list : cohort1List){
-            System.out.println("Name: " + list.name + "Age: " +  list.age + "City: " +
-                                "City: " + list.city + "DOB: " + list.dateOfBirth);
+
+        System.out.println("Cohort 1: ");
+        for (Cohort1 list : cohort1List) {
+            System.out.println(" Name: " + list.getName() + ", Age: " + list.getAge() +
+                    ", City: " + list.getCity() + ", DOB: " + dateFormat.format(list.getDob()));
         }
 
         System.out.println("Cohort 4");
-        for(Cohort4 list : cohort4List){
-            System.out.println("Name: " + list.name + "Age: " +  list.age + "City: " +
-                    "City: " + list.city + "DOB: " + list.dateOfBirth);
+        for (Cohort4 list : cohort4List) {
+            System.out.println(" Name: " + list.getName() + ", Age: " + list.getAge() +
+                    ", City: " + list.getCity() + ", DOB: " + dateFormat.format(list.getDob()));
         }
 
+        compareTwoCohorts(cohort1List, cohort4List);
 
 
     }
 
-    public static void addToCohort1(List<Cohort1> cohort1List){
+    public static void addToCohort1(List<Cohort1> cohort1List) {
         int numOfEmployees;
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yy");
@@ -37,7 +42,7 @@ public class CohortMain {
         Scanner sc = new Scanner(System.in);
         numOfEmployees = sc.nextInt();
 
-        while (numOfEmployees>0) {
+        while (numOfEmployees > 0) {
             System.out.println("Enter name: ");
             String name = sc.next();
 
@@ -60,11 +65,11 @@ public class CohortMain {
 
     }
 
-    public static void addToCohort4(List<Cohort4> cohort4List){
+    public static void addToCohort4(List<Cohort4> cohort4List) {
         Date dateOfBirth = null;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yy");
-        try{
-            Cohort4 [] cohort4Array = {
+        try {
+            Cohort4[] cohort4Array = {
                     new Cohort4("Amal", 24, "Thrissur", dateFormat.parse("01/01/99")),
                     new Cohort4("Kp", 22, "Thrissur", dateFormat.parse("03/08/01")),
                     new Cohort4("Adithya", 23, "Thrissur", dateFormat.parse("01/01/00")),
@@ -72,14 +77,15 @@ public class CohortMain {
                     new Cohort4("Sanal", 21, "Thrissur", dateFormat.parse("03/06/02")),
             };
             cohort4List.addAll(Arrays.asList(cohort4Array));
-        } catch (ParseException e){
+        } catch (ParseException e) {
             System.out.println("Invalid date format");
         }
     }
 
-    public static void compareTwoCohorts(List<Cohort1> cohort1List, List<Cohort4> cohort4List){
+    public static void compareTwoCohorts(List<Cohort1> cohort1List, List<Cohort4> cohort4List) {
 
         System.out.println("\nComparing ages from Cohort 1 and 4: ");
+        /*
         for (Cohort1 cohort1 : cohort1List) {
             for (Cohort4 cohort4 : cohort4List) {
                 if (cohort1.getAge() == cohort4.getAge()) {
@@ -89,5 +95,15 @@ public class CohortMain {
                 }
             }
         }
+        */
+        String result = cohort1List.stream()
+                .flatMap(cohort1 ->
+                        cohort4List.stream()
+                                .filter(cohort4 -> cohort1.getAge() == cohort4.getAge())
+                                .map(cohort4 -> String.format("Cohort1: %s Age: %d%nCohort4: %s Age: %d%n%n",
+                                        cohort1.getName(), cohort1.getAge(), cohort4.getName(), cohort4.getAge()))
+                )
+                .collect(Collectors.joining());
+        System.out.println(result);
     }
 }

@@ -1,4 +1,4 @@
-package com.acabes.assignments.java.hashsets;
+package com.acabes.assignments.java.collections.hashsets;
 import java.util.Collections;
 import java.util.HashSet;
 

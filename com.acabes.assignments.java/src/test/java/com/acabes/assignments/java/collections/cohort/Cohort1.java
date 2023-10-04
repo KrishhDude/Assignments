@@ -1,14 +1,12 @@
-package com.acabes.assignments.java.cohort;
+package com.acabes.assignments.java.collections.cohort;
 
-import java.text.DateFormat;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 
 class Cohort1 {
-    String name;
-    int age;
-    String city;
-    Date dateOfBirth;
+    private String name;
+    private int age;
+    private String city;
+    private Date dateOfBirth;
 
     public Cohort1(String name, int age, String city, Date dateOfBirth) {
         this.name = name;
@@ -16,11 +14,20 @@ class Cohort1 {
         this.city = city;
         this.dateOfBirth = dateOfBirth;
     }
+
     public String getName() {
         return name;
     }
 
     public int getAge() {
         return age;
+    }
+
+    public java.lang.String getCity() {
+        return city;
+    }
+
+    public Date getDob() {
+        return dateOfBirth;
     }
 }
