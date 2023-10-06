@@ -21,27 +21,34 @@ public class OneLakhNames {
                 Files.deleteIfExists(path);
             }
 
+            /*FileOutputStream*/
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             long start = System.currentTimeMillis();
             for(i = 0; i<1000000; i++){
                 fileOutputStream.write(i);
             }
             System.out.println("Writing by FileOutputStream: " + (System.currentTimeMillis() - start) + "ms");
+            fileOutputStream.close();
 
+            /*FileWriter*/
             FileWriter fileWriter = new FileWriter(file);
             start = System.currentTimeMillis();
             for(i=0; i<1000000; i++){
                 fileWriter.write(i + " ");
             }
             System.out.println("Writing by FileWriter: " + (System.currentTimeMillis() - start) + "ms");
+            fileWriter.close();
 
+            /*BufferedWriter*/
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             start = System.currentTimeMillis();
             for(i=0; i<1000000; i++){
                 bufferedWriter.write((int) i);
             }
             System.out.println("Writing by BufferedWriter: " + (System.currentTimeMillis() - start) + "ms");
+            bufferedWriter.close();
 
+            /*FileInputStream*/
             FileInputStream fileInput = new FileInputStream(file);
             BufferedInputStream bufferedInput = new BufferedInputStream(fileInput);
             start = System.currentTimeMillis();
@@ -50,6 +57,7 @@ public class OneLakhNames {
             bufferedInput.close();
             fileInput.close();
 
+            /*BufferedReader*/
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             start = System.currentTimeMillis();
@@ -58,6 +66,7 @@ public class OneLakhNames {
             bufferedReader.close();
             fileReader.close();
 
+            /*Scanner Class*/
             Scanner fileScanner = new Scanner(file);
             start = System.currentTimeMillis();
             while(fileScanner.hasNextLine()){
