@@ -38,17 +38,15 @@ public class TestList {
         System.out.println("Enter name to remove:");
         nameToRemove = sc.next();
         while (true) {
-            try {
                 if (myList.contains(nameToRemove)) {
                     myList.remove(nameToRemove);
+                    System.out.println("Removed " + nameToRemove);
                     System.out.println(myList);
                     break;
                 } else {
-                    throw new InvalidInputException("Invalid input");
+                    System.out.println("The name you entered does not exist within the list");
+                    System.out.println("Ensure you typed correctly..");
                 }
-            } catch (InvalidInputException e) {
-                System.out.println("Invalid input, the entered string does not exist within the list");
-            }
         }
     }
 }

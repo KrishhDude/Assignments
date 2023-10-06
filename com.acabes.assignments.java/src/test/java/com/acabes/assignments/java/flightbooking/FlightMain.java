@@ -28,11 +28,10 @@ public class FlightMain {
         Passenger passenger = new Passenger();
         AdminAccess admin = new AdminAccess();
         int userType;
+        System.out.println("HELLO AND WELCOME TO MODEL AIRWAYS");
         while (true) {
             System.out.println("""
                                     
-                    HELLO AND WELCOME TO MODEL AIRWAYS
-                    
                     How would you like to sign in?
                     1. User
                     2. Admin
@@ -45,13 +44,13 @@ public class FlightMain {
                     System.out.println("""
                                                 
                             What do you want to do today?
-                            
-                            1. Search for a flight
-                            2. Display flight details
-                            3. Book a flight
-                            4. Cancel your booking
-                            5. Display seats availability
-                            6. Exit the system
+                            \t1. Search for a flight
+                            \t2. Display flight details
+                            \t3. Book a flight
+                            \t4. Cancel your booking
+                            \t5. Display seats availability
+                            \t6. View your booking details
+                            \t7. Exit the system
                             
                             """);
                     int choice = sc.nextInt();
@@ -63,21 +62,34 @@ public class FlightMain {
                             displayFlightDetails(passenger.flights, selectedFlightNumber);
                         }
                         case 3 -> {
-                            System.out.println("For which flight would you like to book?");
+                            System.out.println("For which flight would you like to book?\n" +
+                                    "Please Enter the Flight Number");
                             int flightNumber = sc.nextInt();
                             passenger.bookFlight(flightNumber);
                         }
                         case 4 -> {
                             System.out.println("Which flight did you want to cancel seats for?");
                             int flightNumber = sc.nextInt();
-                            passenger.cancelFlight(flightNumber);
+                            System.out.println("Please enter your Booking ID: ");
+                            int bookingId = sc.nextInt();
+                            passenger.cancelFlight(flightNumber, bookingId);
                         }
                         case 5 -> {
                             passenger.displaySeatAvailability();
                         }
-                        case 6 -> flag = false;
+                        case 6 -> {
+                            System.out.println("Enter the flight number");
+                            int flightNumber = sc.nextInt();
+                            System.out.println("Enter your Booking ID");
+                            int bookingId = sc.nextInt();
+                            passenger.viewBookingDetails(flightNumber, bookingId);
+                        }
+                        case 7 -> flag = false;
 
-                        default -> throw new IllegalStateException("Unexpected value: " + choice);
+                        default -> {
+                            System.out.println("Unexpected Value: " + choice);
+                            System.out.println("Please enter a value of the given options");
+                        }
                     }
                 }
             } else if (userType == 2) {
@@ -107,10 +119,6 @@ public class FlightMain {
                                 break;
                             case 3:
                                 admin.addFLights(passenger.flights);
-//                            System.out.println("Enter the flight number of a flight to be added");
-//                            int newFlightNumber = sc.nextInt();
-//                            passenger.addFLight(new Flight(newFlightNumber));
-//                            System.out.println("Added flight: " + newFlightNumber + "to the directory");
                                 break;
                             case 4:
                                 System.out.println("Which flight would you like to edit");
@@ -122,7 +130,8 @@ public class FlightMain {
                                 adminFlag = false;
                                 break;
                             default:
-                                throw new IllegalStateException("Unexpected value: " + choice);
+                                System.out.println("Unexpected Value: " + choice);
+                                System.out.println("Please enter a value of the given options");
                         }
                     }
                 } else {
@@ -133,7 +142,7 @@ public class FlightMain {
                 System.out.println("Thank-you for choosing us! Bye bye..");
                 break;
             } else {
-                throw new InvalidInputException("Invalid Input");
+                System.out.println("Please choose on of the given options");
             }
         }
     }

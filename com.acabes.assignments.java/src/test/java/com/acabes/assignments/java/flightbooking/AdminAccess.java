@@ -26,21 +26,41 @@ public class AdminAccess {
         return null;
     }
 
+
     void addFLights(ArrayList<Flight> flights) {
         System.out.println("Enter Flight Number: ");
-        int flightNumber = sc.nextInt();
-
-        System.out.println("Enter Departure Date: ");
+        int flightNumber = 0;
+        try {
+            flightNumber = sc.nextInt();
+            if (flightNumber % 1 != 0) {
+                throw new InvalidInputException("Enter a valid integer input");
+            }
+        } catch (InvalidInputException e) {
+            System.out.println(e.message);
+        }
+        if(findFlightByNumber(flightNumber, flights) != null){
+            System.out.println("A flight with that flight number already exists. Please input a new number");
+            return;
+        }
+        System.out.println("Enter Departure Date (dd/mm/yy): ");
         String departureDate = sc.next();
+        if (!isValidDate(departureDate)) {
+            System.out.println("Invalid date format. Please use dd/mm/yy.");
+            return;
+        }
 
         System.out.println("Enter Departure Time: ");
         String departureTime = sc.next();
+        if (!isValidTime(departureTime)) {
+            System.out.println("Invalid time format. Please use HH:mm.");
+            return;
+        }
 
         System.out.println("Enter Departure City: ");
-        String departureCity = sc.next();
+        String departureCity = sc.next().toUpperCase();
 
         System.out.println("Enter Destination City: ");
-        String destinationCity = sc.next();
+        String destinationCity = sc.next().toUpperCase();
 
         System.out.println("Enter Price: ");
         double price = sc.nextDouble();
@@ -121,25 +141,18 @@ public class AdminAccess {
                     throw new InvalidInputException("Invalid input. Please enter a valid choice");
 
             }
-            /*
-            if (choice == 1) {
-                if (foundFlight != null) {
-                    flights.remove(foundFlight);
-                    System.out.println("Flight removed successfully");
-                } else {
-                    System.out.println("Flight Not Found");
-                }
-
-
-            } else if (choice == 2) {
-                System.out.println("Enter new date (dd/mm/yy)");
-                foundFlight.departureDate = sc.next();
-
-            } else {
-                throw new InvalidInputException("Invalid input. Please enter a valid choice");
-            }
-             */
-
         }
     }
+    private static boolean isValidDate(String date) {
+        // Validate date format (dd/mm/yy)
+        String datePattern = "\\d{2}/\\d{2}/\\d{2}";
+        return date.matches(datePattern);
+    }
+
+    private static boolean isValidTime(String time) {
+        // Validate time format (HH:mm)
+        String timePattern = "([01][0-9]|2[0-3]):[0-5][0-9]";
+        return time.matches(timePattern);
+    }
+
 }
